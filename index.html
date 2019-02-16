@@ -8,7 +8,7 @@
   <title>Cinema</title>
 </head>
 <body>
-  <h1>John's film finder</h1>
+  <h1>Film finder</h1>
   <form>
     <input id="searchText" type="text">
     <div id="searchBtn">Search</div>
@@ -18,8 +18,8 @@
   <script>
     // Browser code with Fetch API.
     var apiKey = '';
-    var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-    var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    var days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
     
     function searchEvents() {
       var searchText = document.querySelector('#searchText').value;
@@ -32,14 +32,29 @@
         films.innerHTML = '';
         data.forEach(function(film) {
           var filmName = document.createElement('h2');
+          var storeDay;
           filmName.innerHTML = film.name;
           films.appendChild(filmName);
           console.log(filmName);
           var showtimes = film.schedules[0].performances;
           showtimes.forEach(function(performance) {
-            var showingUTC = performance.ts;
             var showing = new Date(performance.ts);
-            console.log(showing);
+            console.log('Individual showing: '+ showing);
+
+            console.log('storeDay: ' + storeDay);
+
+            var showingDay = days[showing.getDay()];
+            if (storeDay != showingDay) {
+              console.log('DAY CHANGE');
+              }
+            console.log('showingDay: ' + showingDay);
+            var showingMonth = months[showing.getMonth()];
+            storeDay = days[showing.getDay()];
+            {{/*  if (storeDay === showingDay) {
+            console.log('SAME DAY');
+            } else {
+              console.log('NEW DAY');
+            }  */}}
           });
           {{/*  obj.forEach(function(performance) {
             console.log(performance.ts);
@@ -59,7 +74,7 @@
           var a = document.createElement('a');
           a.href = '/my-events/' + result.event_id;
           a.textContent = result.name + ' @ ' + result.schedules[0].end_ts;
-          console.log(result.schedules[0]);
+          {{/*  console.log(result.schedules[0]);  */}}
           li.appendChild(a);
           ul.appendChild(li);
         });
