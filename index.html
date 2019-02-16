@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script><![endif]-->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cinema</title>
+</head>
+<body>
+  <h1>John's film finder</h1>
+  <form>
+    <input id="searchText" type="text">
+    <div id="searchBtn">Search</div>
+  </form>
+  <ul id="searchOutput"></ul>
+  <section></section>
+  <script>
+    // Browser code with Fetch API.
+    var apiKey = '';
+    var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    
+    function searchEvents() {
+      var searchText = document.querySelector('#searchText').value;
+      var headers = new Headers();
+      headers.set('Authorization', 'Bearer '+apiKey);
+      fetch('https://api.list.co.uk/v1/events?place_id=418fdadd-4f1e-b60e-03e0-bcc4000031d6&tags=film', { headers: headers })
+      .then(function(response) { return response.json(); })
+      .then(function(data) {
+        var films = document.querySelector('section');
+        films.innerHTML = '';
+        data.forEach(function(film) {
+          var filmName = document.createElement('h2');
+          filmName.innerHTML = film.name;
+          films.appendChild(filmName);
+          console.log(filmName);
+          var showtimes = film.schedules[0].performances;
+          showtimes.forEach(function(performance) {
+            var showingUTC = performance.ts;
+            var showing = new Date(performance.ts);
+            console.log(showing);
+          });
+          {{/*  obj.forEach(function(performance) {
+            console.log(performance.ts);
+          });  */}}
+          {{/*  var table = document.createElement('table');
+          var row = document.createElement('tr');
+          var th = document.createElement('th');
+          row.appendChild(th);
+          th.innerHTML = film.name;
+          table.appendChild(row);
+          films.appendChild(table);  */}}
+        });
+        var ul = document.querySelector('#searchOutput');
+        ul.innerHTML = '';
+        data.forEach(function(result) {
+          var li = document.createElement('li');
+          var a = document.createElement('a');
+          a.href = '/my-events/' + result.event_id;
+          a.textContent = result.name + ' @ ' + result.schedules[0].end_ts;
+          console.log(result.schedules[0]);
+          li.appendChild(a);
+          ul.appendChild(li);
+        });
+      });
+    }
+    document.querySelector('#searchBtn')
+    .addEventListener('click', searchEvents);
+  </script>
+</body>
+</html>
