@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" media="screen">
   <link href="https://fonts.googleapis.com/css?family=Cutive+Mono" rel="stylesheet">
   <style>
     body {
@@ -28,7 +28,7 @@
       padding: 10px 0 10px 20px;
     }
   </style>
-  <title>Cinema</title>
+  <title>Film Finder</title>
 </head>
 <body>
   <div class="container">
@@ -44,17 +44,15 @@
                 <label for="key">Key</label>
                 <input id="key" type="text" class="form-control" required>
               </div>
-              <div id="searchBtn" class="btn btn-primary">Get film times</div>
+              <div id="go" class="btn btn-primary">Get film times</div>
             </form>
           </div>
         </div>
-        <ul id="searchOutput"></ul>
         <section></section>
       </div>
     </div>
   </div>
   <script>
-    
     var days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
     var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
     
@@ -65,7 +63,7 @@
       return i;
     }
     
-    function searchEvents() {
+    function getFilms() {
       var key = document.querySelector('#key').value;
       var headers = new Headers();
       headers.set('Authorization', 'Bearer '+ key);
@@ -75,34 +73,26 @@
         var films = document.querySelector('section');
         films.innerHTML = '';
         data.forEach(function(film) {
-          console.log(film);
           var storeDay;
           var dailyTimes;
-          
-          var filmName = document.createElement('h2');
-          filmName.innerHTML = film.name;
-          
           var showtimes = document.createElement('table');
           
           var showtimesData = film.schedules[0].performances;
           
           showtimesData.forEach(function(performance) {
-            console.log(filmName);
-            console.log(performance);
+            
             if(performance.hasOwnProperty('properties')) {
-              var thing = performance.properties;
-              if(thing.hasOwnProperty('event.film.subtitled')){
-                console.log('This is subtitled');
+              var properties = performance.properties;
+              if(properties.hasOwnProperty('event.film.subtitled')){
                 return; 
               }
-              
             }
+            
             var showing = new Date(performance.ts);
             
             var showingDay = days[showing.getDay()];
             var showingDate = addZero(showing.getDate());
             var showingMonth = months[showing.getMonth()];
-            var showingYear = showing.getYear();
             var showingHour = addZero(showing.getHours());
             var showingMinutes = addZero(showing.getMinutes());
             
@@ -123,25 +113,20 @@
             storeDay = days[showing.getDay()];
           });
           
-          {{/*  filmTimes.appendChild(filmName);
-            filmTimes.appendChild(showtimes);  */}}
-            {{/*  films.appendChild(filmTimes);  */}}
-            
-            var filmCard = `
-            <div class="card mb-2">
-              <div class="card-body">
-                ${filmName.outerHTML}
-                ${showtimes.outerHTML}
-              </div>
+          var filmCard = `
+          <div class="card mb-2">
+            <div class="card-body">
+              <h2>${film.name}</h2>
+              ${showtimes.outerHTML}
             </div>
-            `;
-            
-            films.innerHTML += filmCard;
-          });
+          </div>
+          `;
+          
+          films.innerHTML += filmCard;
         });
-      }
-      document.querySelector('#searchBtn')
-      .addEventListener('click', searchEvents);
-    </script>
-  </body>
-  </html>
+      });
+    }
+    document.querySelector('#go').addEventListener('click', getFilms);
+  </script>
+</body>
+</html>
