@@ -55,7 +55,6 @@
   </div>
   <script>
     
-    var apiKey = '';
     var days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
     var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
     
@@ -69,7 +68,7 @@
     function searchEvents() {
       var key = document.querySelector('#key').value;
       var headers = new Headers();
-      headers.set('Authorization', 'Bearer '+apiKey);
+      headers.set('Authorization', 'Bearer '+ key);
       fetch('https://api.list.co.uk/v1/events?place_id=418fdadd-4f1e-b60e-03e0-bcc4000031d6&tags=film', { headers: headers })
       .then(function(response) { return response.json(); })
       .then(function(data) {
