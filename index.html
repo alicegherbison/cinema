@@ -75,6 +75,7 @@
         var films = document.querySelector('section');
         films.innerHTML = '';
         data.forEach(function(film) {
+          console.log(film);
           var storeDay;
           var dailyTimes;
           
@@ -90,8 +91,8 @@
             console.log(performance);
             if(performance.hasOwnProperty('properties')) {
               var thing = performance.properties;
-              if(thing.hasOwnProperty('event.film.3d')){
-                console.log('This may be a 3d film');
+              if(thing.hasOwnProperty('event.film.subtitled')){
+                console.log('This is subtitled');
                 return; 
               }
               
