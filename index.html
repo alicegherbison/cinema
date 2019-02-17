@@ -36,61 +36,42 @@
           var filmName = document.createElement('h2');
           filmName.innerHTML = film.name;
           films.appendChild(filmName);
-          console.log(filmName);
           
           var showtimes = document.createElement('table');
-          films.appendChild(showtimes);
+          films.appendChild(showtimes);      
           
           var showtimesData = film.schedules[0].performances;
+          
+          var dailyTimes = document.createElement('tr');
+          
           showtimesData.forEach(function(performance) {
-            var dailyTimes = document.createElement('tr');
             
             var showing = new Date(performance.ts);
-            console.log('Individual showing: '+ showing);
-            
-            console.log('storeDay: ' + storeDay);
-            // get the showing
-            // get the current day
-            // create new row
-            // create header cell for day
-            // output current day
-            // create cell for time
-            // output time
+    
             var showingDay = days[showing.getDay()];
+            var showingDate = showing.getDate();
+            var showingMonth = months[showing.getMonth()];
+            var showingYear = showing.getYear();
+            var showingHour = showing.getHours();
+            var showingMinutes = showing.getMinutes();
             
-            if (storeDay === showingDay) {
-              console.log('showingDay: ' + showingDay);
+            var date = document.createElement('td');
+            date.innerHTML = showingDay + ' ' + showingDate + ' ' + showingMonth;
+            
+            var showtime = document.createElement('td');
+            showtime.innerHTML = showingHour + ':' + showingMinutes;
+            
+            dailyTimes.appendChild(showtime);
+            
+            if (storeDay != showingDay) {
+              dailyTimes.prepend(date);
+              showtimes.appendChild(dailyTimes);
+              dailyTimes = document.createElement('tr');
             }
             
-            var showingMonth = months[showing.getMonth()];
             storeDay = days[showing.getDay()];
-            {{/*  if (storeDay === showingDay) {
-              console.log('SAME DAY');
-            } else {
-              console.log('NEW DAY');
-            }  */}}
+            
           });
-          {{/*  obj.forEach(function(performance) {
-            console.log(performance.ts);
-          });  */}}
-          {{/*  var table = document.createElement('table');
-          var row = document.createElement('tr');
-          var th = document.createElement('th');
-          row.appendChild(th);
-          th.innerHTML = film.name;
-          table.appendChild(row);
-          films.appendChild(table);  */}}
-        });
-        var ul = document.querySelector('#searchOutput');
-        ul.innerHTML = '';
-        data.forEach(function(result) {
-          var li = document.createElement('li');
-          var a = document.createElement('a');
-          a.href = '/my-events/' + result.event_id;
-          a.textContent = result.name + ' @ ' + result.schedules[0].end_ts;
-          {{/*  console.log(result.schedules[0]);  */}}
-          li.appendChild(a);
-          ul.appendChild(li);
         });
       });
     }
