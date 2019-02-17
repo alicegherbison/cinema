@@ -16,7 +16,7 @@
   <ul id="searchOutput"></ul>
   <section></section>
   <script>
-    // Browser code with Fetch API.
+    
     var apiKey = '';
     var days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
     var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
@@ -32,46 +32,44 @@
         films.innerHTML = '';
         data.forEach(function(film) {
           var storeDay;
-          
+          var dailyTimes;
+
           var filmName = document.createElement('h2');
           filmName.innerHTML = film.name;
-          films.appendChild(filmName);
           
           var showtimes = document.createElement('table');
-          films.appendChild(showtimes);      
           
           var showtimesData = film.schedules[0].performances;
           
-          var dailyTimes = document.createElement('tr');
-          
           showtimesData.forEach(function(performance) {
-            
             var showing = new Date(performance.ts);
-    
+            
             var showingDay = days[showing.getDay()];
             var showingDate = showing.getDate();
             var showingMonth = months[showing.getMonth()];
             var showingYear = showing.getYear();
             var showingHour = showing.getHours();
             var showingMinutes = showing.getMinutes();
-            
+                        
             var date = document.createElement('td');
             date.innerHTML = showingDay + ' ' + showingDate + ' ' + showingMonth;
             
             var showtime = document.createElement('td');
             showtime.innerHTML = showingHour + ':' + showingMinutes;
-            
-            dailyTimes.appendChild(showtime);
-            
+
             if (storeDay != showingDay) {
-              dailyTimes.prepend(date);
-              showtimes.appendChild(dailyTimes);
               dailyTimes = document.createElement('tr');
+              dailyTimes.prepend(date);
             }
-            
+
+            dailyTimes.appendChild(showtime);
+            showtimes.appendChild(dailyTimes);
+
             storeDay = days[showing.getDay()];
-            
           });
+          
+          films.appendChild(filmName);
+          films.appendChild(showtimes);
         });
       });
     }
