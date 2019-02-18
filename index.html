@@ -48,7 +48,7 @@
             </form>
           </div>
         </div>
-        <section></section>
+        <section id="results"></section>
       </div>
     </div>
   </div>
@@ -66,12 +66,12 @@
     function getFilms() {
       var key = document.querySelector('#key').value;
       var headers = new Headers();
-      headers.set('Authorization', 'Bearer '+ key);
+      headers.set('Authorization', 'Bearer ' + key);
       fetch('https://api.list.co.uk/v1/events?place_id=418fdadd-4f1e-b60e-03e0-bcc4000031d6&tags=film', { headers: headers })
       .then(function(response) { return response.json(); })
       .then(function(data) {
-        var films = document.querySelector('section');
-        films.innerHTML = '';
+        var results = document.querySelector('#results');
+        results.innerHTML = '';
         data.forEach(function(film) {
           var storeDay;
           var dailyTimes;
@@ -96,15 +96,15 @@
             var showingHour = addZero(showing.getHours());
             var showingMinutes = addZero(showing.getMinutes());
             
-            var date = document.createElement('th');
-            date.innerHTML = showingDay + ' ' + showingDate + ' ' + showingMonth;
+            var dateText = document.createElement('th');
+            dateText.innerHTML = showingDay + ' ' + showingDate + ' ' + showingMonth;
             
             var showtime = document.createElement('td');
             showtime.innerHTML = showingHour + ':' + showingMinutes;
             
             if (storeDay != showingDay) {
               dailyTimes = document.createElement('tr');
-              dailyTimes.prepend(date);
+              dailyTimes.prepend(dateText);
             }
             
             dailyTimes.appendChild(showtime);
@@ -122,7 +122,7 @@
           </div>
           `;
           
-          films.innerHTML += filmCard;
+          results.innerHTML += filmCard;
         });
       });
     }
