@@ -57,11 +57,24 @@
     const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
     const submit = document.querySelector('#go');
     
-    function addZero(i) {
-      if (i < 10) {
-        i = "0" + i;
+    function addZero(x) {
+      if (x < 10) {
+        x = "0" + x;
       }
-      return i;
+      return x;
+    }
+
+    function ignoreProperty(performance, property, film) {
+      if(performance.hasOwnProperty('properties')) {
+        var performanceProperties = performance.properties;
+        console.log(film);
+        console.log(performance.ts);
+        console.log(performanceProperties);
+        if(performanceProperties.hasOwnProperty(property)){
+          console.log(property);
+          return;
+        }
+      }
     }
     
     function getFilms() {
@@ -83,13 +96,15 @@
           const showtimesData = film.schedules[0].performances;
           
           showtimesData.forEach(function(performance) {
+
+            ignoreProperty(performance, 'event.film.subtitled', film);
             
-            if(performance.hasOwnProperty('properties')) {
+            {{/*  if(performance.hasOwnProperty('properties')) {
               var properties = performance.properties;
               if(properties.hasOwnProperty('event.film.subtitled')){
                 return; 
               }
-            }
+            }  */}}
             
             const showing = new Date(performance.ts);     
             const showingDay = days[showing.getDay()];
