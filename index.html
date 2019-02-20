@@ -99,17 +99,17 @@
             const dateText = document.createElement('th');
             dateText.innerHTML = showingDay + ' ' + showingDate + ' ' + showingMonth;
             
-            const showtime = document.createElement('td');
-            showtime.innerHTML = showingHour + ':' + showingMinutes;
+            const timeText = document.createElement('td');
+            timeText.innerHTML = showingHour + ':' + showingMinutes;
             
             if (storeDay != showingDay) {
               dailyTimes = document.createElement('tr');
               dailyTimes.prepend(dateText);
             }
             
-            dailyTimes.appendChild(showtime);
+            dailyTimes.appendChild(timeText);
             showtimes.appendChild(dailyTimes);
-            
+
             storeDay = days[showing.getDay()];
           });
           
