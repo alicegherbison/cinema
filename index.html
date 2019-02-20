@@ -53,8 +53,8 @@
     </div>
   </div>
   <script>
-    var days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+    const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
     
     function addZero(i) {
       if (i < 10) {
@@ -64,20 +64,20 @@
     }
     
     function getFilms() {
-      var key = document.querySelector('#key').value;
-      var headers = new Headers();
+      const key = document.querySelector('#key').value;
+      const headers = new Headers();
       headers.set('Authorization', 'Bearer ' + key);
       fetch('https://api.list.co.uk/v1/events?place_id=418fdadd-4f1e-b60e-03e0-bcc4000031d6&tags=film', { headers: headers })
       .then(function(response) { return response.json(); })
       .then(function(data) {
-        var results = document.querySelector('#results');
+        const results = document.querySelector('#results');
         results.innerHTML = '';
         data.forEach(function(film) {
-          var storeDay;
-          var dailyTimes;
-          var showtimes = document.createElement('table');
+          let storeDay;
+          let dailyTimes;
+          const showtimes = document.createElement('table');
           
-          var showtimesData = film.schedules[0].performances;
+          const showtimesData = film.schedules[0].performances;
           
           showtimesData.forEach(function(performance) {
             
@@ -88,18 +88,18 @@
               }
             }
             
-            var showing = new Date(performance.ts);
+            const showing = new Date(performance.ts);
             
-            var showingDay = days[showing.getDay()];
-            var showingDate = addZero(showing.getDate());
-            var showingMonth = months[showing.getMonth()];
-            var showingHour = addZero(showing.getHours());
-            var showingMinutes = addZero(showing.getMinutes());
+            const showingDay = days[showing.getDay()];
+            const showingDate = addZero(showing.getDate());
+            const showingMonth = months[showing.getMonth()];
+            const showingHour = addZero(showing.getHours());
+            const showingMinutes = addZero(showing.getMinutes());
             
-            var dateText = document.createElement('th');
+            const dateText = document.createElement('th');
             dateText.innerHTML = showingDay + ' ' + showingDate + ' ' + showingMonth;
             
-            var showtime = document.createElement('td');
+            const showtime = document.createElement('td');
             showtime.innerHTML = showingHour + ':' + showingMinutes;
             
             if (storeDay != showingDay) {
@@ -113,7 +113,7 @@
             storeDay = days[showing.getDay()];
           });
           
-          var filmCard = `
+          const filmCard = `
           <div class="card mb-2">
             <div class="card-body">
               <h2>${film.name}</h2>
