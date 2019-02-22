@@ -64,7 +64,13 @@
       return x;
     }
 
-    function ignoreProperty(performance, property, film) {
+    function ignoreSubtitled(performance) {
+      if(!(performance.hasOwnProperty('properties') && performance.properties.hasOwnProperty('event.film.subtitled'))) {
+      return true;
+      }
+    }
+
+    {{/*  function ignoreProperty(performance, property, film) {
       if(performance.hasOwnProperty('properties')) {
         var performanceProperties = performance.properties;
         console.log(film);
@@ -75,7 +81,7 @@
           return;
         }
       }
-    }
+    }  */}}
     
     function getFilms() {
       const key = document.querySelector('#key').value;
@@ -95,9 +101,9 @@
           const showtimes = document.createElement('table');
           const showtimesData = film.schedules[0].performances;
           
-          showtimesData.forEach(function(performance) {
+          showtimesData.filter(ignoreSubtitled).forEach(function(performance)  {
 
-            ignoreProperty(performance, 'event.film.subtitled', film);
+            {{/*  ignoreProperty(performance, 'event.film.subtitled', film);  */}}
             
             {{/*  if(performance.hasOwnProperty('properties')) {
               var properties = performance.properties;
