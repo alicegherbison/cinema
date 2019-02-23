@@ -49,6 +49,7 @@
           </div>
         </div>
         <section id="results"></section>
+        <footer class="mt-4 mb-4">built by <a href="https://www.alicegherbison.com">alice</a>. source on <a href="https://www.github.com/alicegherbison/cinema">github</a>.</footer>
       </div>
     </div>
   </div>
@@ -63,13 +64,13 @@
       }
       return x;
     }
-
+    
     function ignoreSubtitled(performance) {
       if(!(performance.hasOwnProperty('properties') && performance.properties.hasOwnProperty('event.film.subtitled'))) {
-      return true;
+        return true;
       }
     }
-
+    
     {{/*  function ignoreProperty(performance, property, film) {
       if(performance.hasOwnProperty('properties')) {
         var performanceProperties = performance.properties;
@@ -96,13 +97,15 @@
         results.innerHTML = '';
         
         data.forEach(function(film) {
+          console.log(film);
           let storeDay;
           let dailyTimes;
+          let storeTime = 0;
           const showtimes = document.createElement('table');
           const showtimesData = film.schedules[0].performances;
           
           showtimesData.filter(ignoreSubtitled).forEach(function(performance)  {
-
+            
             {{/*  ignoreProperty(performance, 'event.film.subtitled', film);  */}}
             
             {{/*  if(performance.hasOwnProperty('properties')) {
@@ -127,11 +130,27 @@
             if (storeDay != showingDay) {
               dailyTimes = document.createElement('tr');
               dailyTimes.prepend(dateText);
+              storeTime = 0;
+            }
+
+            if (storeTime === 7) {
+              console.log('running the 7th time before new row: ');
+              console.log(dailyTimes);
+              dailyTimes = document.createElement('tr');
+              dailyTimes.insertAdjacentHTML('afterbegin', '<td></td>');
+              if (dailyTimes.previousSibling) {
+                dailyTimes.previousSibling.style.borderBottom = 'none';
+              };              
+              console.log('running the 7th time after new row: ');
+              console.log(dailyTimes);
+              //dailyTimes.previousSibling.style.borderBottom('none');
+              storeTime = 0;
             }
             
             dailyTimes.appendChild(timeText);
             showtimes.appendChild(dailyTimes);
             
+            storeTime += 1;
             storeDay = days[showing.getDay()];
           });
           
@@ -141,11 +160,19 @@
               <h2>${film.name}</h2>
               ${showtimes.outerHTML}
             </div>
+            <div class="card-footer text-muted">
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="${film.event_id}" />
+                <label class="form-check-label" for="${film.event_id}">print</label>
+              </div>
+            </div>
           </div>
           `;
-          
           results.innerHTML += filmCard;
         });
+        results.innerHTML += /*html*/`
+          <div class="text-center mt-4"><a href="javascript:window.print()" id="print" class="btn btn-primary">print me</a></div>
+        `;
       });
     }
     
