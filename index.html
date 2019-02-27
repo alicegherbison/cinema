@@ -8,24 +8,35 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" media="screen">
   <link href="https://fonts.googleapis.com/css?family=Cutive+Mono" rel="stylesheet">
   <style>
-    body {
-      font-family: 'Curtive Mono', monospace;
+    @media screen {
+      body {
+        font-family: 'Curtive Mono', monospace;
+      }
+      
+      table {
+        margin-top: 20px;
+      }
+      
+      th {
+        padding: 10px 10px 10px 0;
+      }
+      
+      tr:not(:last-of-type) {
+        border-bottom: 1px solid #ddd;
+      }
+      
+      td {
+        padding: 10px 0 10px 20px;
+      }
     }
     
-    table {
-      margin-top: 20px;
-    }
-    
-    th {
-      padding: 10px 10px 10px 0;
-    }
-    
-    tr:not(:last-of-type) {
-      border-bottom: 1px solid #ddd;
-    }
-    
-    td {
-      padding: 10px 0 10px 20px;
+    @media print {
+      body {
+        font-family: 'Curtive Mono', monospace;
+      }
+      header, footer, .card-footer, .no-print {
+        display: none;
+      }
     }
     
   </style>
@@ -35,20 +46,22 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col">
-        <div class="card mt-4 mb-2">
-          <div class="card-body">
-            <h1>FILM FINDER</h1>
-            <p>A small page for displaying upcoming films at Cineworld Fountainpark, Edinburgh.</p>
-            <hr/>
-            <form>
-              <div class="form-group">
-                <label for="key">Key</label>
-                <input id="key" type="text" class="form-control" required>
-              </div>
-              <div id="go" class="btn btn-primary">Get film times</div>
-            </form>
+        <header>
+          <div class="card mt-4 mb-2">
+            <div class="card-body">
+              <h1>FILM FINDER</h1>
+              <p>A small page for displaying upcoming films at Cineworld Fountainpark, Edinburgh.</p>
+              <hr/>
+              <form>
+                <div class="form-group">
+                  <label for="key">Key</label>
+                  <input id="key" type="text" class="form-control" required>
+                </div>
+                <div id="go" class="btn btn-primary">Get film times</div>
+              </form>
+            </div>
           </div>
-        </div>
+        </header>
         <section id="results"></section>
         <footer class="mt-4 mb-4">built by <a href="https://www.alicegherbison.com">alice</a>. source on <a href="https://www.github.com/alicegherbison/cinema">github</a>.</footer>
       </div>
