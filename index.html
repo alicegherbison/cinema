@@ -27,13 +27,14 @@
     td {
       padding: 10px 0 10px 20px;
     }
+    
   </style>
   <title>Film Finder</title>
 </head>
 <body>
   <div class="container">
     <div class="row justify-content-center">
-      <div class="col-md-7">
+      <div class="col">
         <div class="card mt-4 mb-2">
           <div class="card-body">
             <h1>FILM FINDER</h1>
@@ -132,7 +133,7 @@
               dailyTimes.prepend(dateText);
               storeTime = 0;
             }
-
+            
             if (storeTime === 7) {
               console.log('running the 7th time before new row: ');
               console.log(dailyTimes);
@@ -158,7 +159,9 @@
           <div class="card mb-2">
             <div class="card-body">
               <h2>${film.name}</h2>
-              ${showtimes.outerHTML}
+              <div class="table-responsive">
+                ${showtimes.outerHTML}
+              </div>
             </div>
             <div class="card-footer text-muted">
               <div class="form-check">
@@ -171,7 +174,7 @@
           results.innerHTML += filmCard;
         });
         results.innerHTML += /*html*/`
-          <div class="text-center mt-4"><a href="javascript:window.print()" id="print" class="btn btn-primary">print me</a></div>
+        <div class="text-center mt-4"><a href="javascript:window.print()" id="print" class="btn btn-primary">print me</a></div>
         `;
       });
     }
