@@ -57,7 +57,7 @@
                   <label for="key">Key</label>
                   <input id="key" type="text" class="form-control" required>
                 </div>
-                <div id="go" class="btn btn-primary">Get film times</div>
+                <button type="submit" id="go" class="btn btn-primary">Get film times</button>
               </form>
             </div>
           </div>
@@ -85,10 +85,11 @@
       }
     }
     
-    function getFilms() {
+    function getFilms(e) {
       const key = document.querySelector('#key').value;
       const headers = new Headers();
       
+      e.preventDefault();
       headers.set('Authorization', 'Bearer ' + key);
       
       fetch('https://api.list.co.uk/v1/events?place_id=418fdadd-4f1e-b60e-03e0-bcc4000031d6&tags=film', { headers: headers })
