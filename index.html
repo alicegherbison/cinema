@@ -34,7 +34,7 @@
       body {
         font-family: 'Curtive Mono', monospace;
       }
-      header, footer, .card-footer, .no-print {
+      header, footer, #print, .card-footer, .no-print {
         display: none;
       }
     }
@@ -159,7 +159,7 @@
           results.innerHTML += filmCard;
         });
         results.innerHTML += /*html*/`
-        <div class="text-center mt-4"><a href="javascript:window.print()" id="print" class="btn btn-primary">print me</a></div>
+        <div class="text-center mt-4"><a href="javascript:window.print()" id="print" class="btn btn-primary">print</a></div>
         `;
       });
     }
