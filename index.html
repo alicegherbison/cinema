@@ -32,11 +32,11 @@
         padding: 10px 0 10px 20px;
         background-color: blue;
       }
-
+      
       .time {
         background-color: red;
       }
-
+      
     }
     
     @media print {
@@ -125,8 +125,8 @@
         data.forEach(function(film) {
           let storeDay;
           let dailyTimes;
-          let storeTime = 0;
           let storeDailyTimes = [];
+          let dailyTimesCell = document.createElement('td');
           const showtimes = document.createElement('table');
           const showtimesData = film.schedules[0].performances;
           
@@ -139,42 +139,22 @@
             const showingMinutes = addZero(showing.getMinutes());
             const dateText = document.createElement('th');
             const timeText = document.createElement('span');
+
             timeText.classList.add('time');
             
             dateText.innerHTML = showingDay + '&nbsp;' + showingDate + '&nbsp;' + showingMonth;
             timeText.innerHTML = showingHour + ':' + showingMinutes;
             
-            storeDailyTimes.push(timeText);
+            dailyTimesCell.appendChild(timeText);
             
             if (storeDay != showingDay) {
-              const dailyTimesCell = document.createElement('td');
-
               dailyTimes = document.createElement('tr');
               dailyTimes.prepend(dateText);
-              
-              for(var i=0; i<storeDailyTimes.length; i++){
-                console.log(storeDailyTimes[i]);
-                dailyTimesCell.innerHTML += storeDailyTimes[i];
-              }
-              
-              dailyTimes.append(dailyTimesCell);
-              storeTime = 0;
+              dailyTimes.appendChild(dailyTimesCell);
+              dailyTimesCell = document.createElement('td');
             }
-            
-            {{/*  if (storeTime === 7) {
-              dailyTimes = document.createElement('tr');
-              dailyTimes.insertAdjacentHTML('afterbegin', '<td></td>');
-              if (dailyTimes.previousSibling) {
-                dailyTimes.previousSibling.style.borderBottom = 'none';
-              };              
-              //dailyTimes.previousSibling.style.borderBottom('none');
-              storeTime = 0;
-            }  */}}
-            
-            {{/*  dailyTimes.appendChild(timeText);  */}}
             showtimes.appendChild(dailyTimes);
             
-            storeTime += 1;
             storeDay = days[showing.getDay()];
           });
           
