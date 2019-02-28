@@ -15,10 +15,13 @@
       
       table {
         margin-top: 20px;
+        background-color: green;
       }
       
       th {
+        /*position: absolute;*/
         padding: 10px 10px 10px 0;
+        background-color: yellow;
       }
       
       tr:not(:last-of-type) {
@@ -27,7 +30,13 @@
       
       td {
         padding: 10px 0 10px 20px;
+        background-color: blue;
       }
+
+      .time {
+        background-color: red;
+      }
+
     }
     
     @media print {
@@ -117,6 +126,7 @@
           let storeDay;
           let dailyTimes;
           let storeTime = 0;
+          let storeDailyTimes = [];
           const showtimes = document.createElement('table');
           const showtimesData = film.schedules[0].performances;
           
@@ -128,18 +138,30 @@
             const showingHour = addZero(showing.getHours());
             const showingMinutes = addZero(showing.getMinutes());
             const dateText = document.createElement('th');
-            const timeText = document.createElement('td');
+            const timeText = document.createElement('span');
+            timeText.classList.add('time');
             
-            dateText.innerHTML = showingDay + ' ' + showingDate + ' ' + showingMonth;
-            timeText.innerHTML = showingHour + ':' + showingMinutes;            
+            dateText.innerHTML = showingDay + '&nbsp;' + showingDate + '&nbsp;' + showingMonth;
+            timeText.innerHTML = showingHour + ':' + showingMinutes;
+            
+            storeDailyTimes.push(timeText);
             
             if (storeDay != showingDay) {
+              const dailyTimesCell = document.createElement('td');
+
               dailyTimes = document.createElement('tr');
               dailyTimes.prepend(dateText);
+              
+              for(var i=0; i<storeDailyTimes.length; i++){
+                console.log(storeDailyTimes[i]);
+                dailyTimesCell.innerHTML += storeDailyTimes[i];
+              }
+              
+              dailyTimes.append(dailyTimesCell);
               storeTime = 0;
             }
             
-            if (storeTime === 7) {
+            {{/*  if (storeTime === 7) {
               dailyTimes = document.createElement('tr');
               dailyTimes.insertAdjacentHTML('afterbegin', '<td></td>');
               if (dailyTimes.previousSibling) {
@@ -147,9 +169,9 @@
               };              
               //dailyTimes.previousSibling.style.borderBottom('none');
               storeTime = 0;
-            }
+            }  */}}
             
-            dailyTimes.appendChild(timeText);
+            {{/*  dailyTimes.appendChild(timeText);  */}}
             showtimes.appendChild(dailyTimes);
             
             storeTime += 1;
