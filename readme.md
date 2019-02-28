@@ -15,8 +15,7 @@ Results **exclude** any subtitled films, but include 3D, 4D and Cinebabies.
 
 ## Upcoming features
 * print stylings
-* ability to select which film timetables to print
-* non-Bootstraped layout (Bootstrap used initially for speed)
+* non-Bootstrapped layout (Bootstrap used initially for speed)
 
 ## Personal learnings
 * accessing JSON object properties
