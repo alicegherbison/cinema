@@ -85,19 +85,6 @@
       }
     }
     
-    {{/*  function ignoreProperty(performance, property, film) {
-      if(performance.hasOwnProperty('properties')) {
-        var performanceProperties = performance.properties;
-        console.log(film);
-        console.log(performance.ts);
-        console.log(performanceProperties);
-        if(performanceProperties.hasOwnProperty(property)){
-          console.log(property);
-          return;
-        }
-      }
-    }  */}}
-    
     function getFilms() {
       const key = document.querySelector('#key').value;
       const headers = new Headers();
@@ -111,24 +98,13 @@
         results.innerHTML = '';
         
         data.forEach(function(film) {
-          console.log(film);
           let storeDay;
           let dailyTimes;
           let storeTime = 0;
           const showtimes = document.createElement('table');
           const showtimesData = film.schedules[0].performances;
           
-          showtimesData.filter(ignoreSubtitled).forEach(function(performance)  {
-            
-            {{/*  ignoreProperty(performance, 'event.film.subtitled', film);  */}}
-            
-            {{/*  if(performance.hasOwnProperty('properties')) {
-              var properties = performance.properties;
-              if(properties.hasOwnProperty('event.film.subtitled')){
-                return; 
-              }
-            }  */}}
-            
+          showtimesData.filter(ignoreSubtitled).forEach(function(performance)  {            
             const showing = new Date(performance.ts);     
             const showingDay = days[showing.getDay()];
             const showingDate = addZero(showing.getDate());
@@ -148,15 +124,11 @@
             }
             
             if (storeTime === 7) {
-              console.log('running the 7th time before new row: ');
-              console.log(dailyTimes);
               dailyTimes = document.createElement('tr');
               dailyTimes.insertAdjacentHTML('afterbegin', '<td></td>');
               if (dailyTimes.previousSibling) {
                 dailyTimes.previousSibling.style.borderBottom = 'none';
               };              
-              console.log('running the 7th time after new row: ');
-              console.log(dailyTimes);
               //dailyTimes.previousSibling.style.borderBottom('none');
               storeTime = 0;
             }
@@ -169,7 +141,7 @@
           });
           
           const filmCard = /*html*/`
-          <div class="card mb-2">
+          <div class="film card mb-2" data-id="${film.event_id}">
             <div class="card-body">
               <h2>${film.name}</h2>
               <div class="table-responsive">
@@ -178,7 +150,7 @@
             </div>
             <div class="card-footer text-muted">
               <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="${film.event_id}" />
+                <input type="checkbox" class="check-print form-check-input" id="${film.event_id}" data-id="${film.event_id}" />
                 <label class="form-check-label" for="${film.event_id}">print</label>
               </div>
             </div>
@@ -191,7 +163,55 @@
         `;
       });
     }
+        
+    function prepareForPrint() {
+      let anyChecked = false;
+      const all = document.querySelectorAll('.check-print');
+      const checked = document.querySelectorAll('.check-print:checked');
+      const unchecked = document.querySelectorAll('.check-print:not(:checked');
+      
+      all.forEach((checkbox) => {
+        if(checkbox.checked === true) {
+          anyChecked = true;
+        }
+      })
+      
+      checked.forEach((checkbox) => {
+        const id = checkbox.getAttribute('data-id');
+        const film = document.querySelector(`.film[data-id="${id}"]`);
+        
+        if(film.classList.contains('no-print')) {
+          film.classList.remove('no-print');
+        }
+      });
+      
+      unchecked.forEach((checkbox) => {
+        const id = checkbox.getAttribute('data-id');
+        const film = document.querySelector(`.film[data-id="${id}"]`);
+        
+        if (anyChecked === true) {
+          film.classList.add('no-print');
+        }
+        
+        if (anyChecked === false && film.classList.contains('no-print')){
+          film.classList.remove('no-print');
+        }
+      });
+    };
     
+    // webkit
+    if (window.matchMedia) {
+      const mediaQueryList = window.matchMedia('print');
+      mediaQueryList.addListener(function(mql) {
+        if (mql.matches) {
+          prepareForPrint();
+        }
+      });
+    }
+    
+    // ie, firefox
+    window.onbeforeprint = prepareForPrint;
+
     submit.addEventListener('click', getFilms);
   </script>
 </body>
