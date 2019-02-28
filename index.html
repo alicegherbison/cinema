@@ -50,12 +50,26 @@
           <div class="card mt-4 mb-2">
             <div class="card-body">
               <h1>FILM FINDER</h1>
-              <p>A small page for displaying upcoming films at Cineworld Fountainpark, Edinburgh.</p>
+              <p>A small page for displaying upcoming films at Cineworld.</p>
               <hr/>
               <form>
-                <div class="form-group">
-                  <label for="key">Key</label>
-                  <input id="key" type="text" class="form-control" required>
+                <div class="form-row">
+                  <div class="col">
+                    <div class="form-group">
+                      <label for="cinema">Cinema</label>
+                      <select class="form-control" id="cinema">
+                        <option value="418fdadd-4f1e-b60e-03e0-bcc4000031d6" selected>Fountainpark</option>
+                        <option value="499fdadd-4f1e-b60e-33e0-bcc400003a86">Renfrew Street</option>
+                        <option value="3a9fdadd-4f1e-b60e-33e0-bcc40000394c">Falkirk</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-group">
+                      <label for="key">Key</label>
+                      <input id="key" type="text" class="form-control" required>
+                    </div>
+                  </div>
                 </div>
                 <button type="submit" id="go" class="btn btn-primary">Get film times</button>
               </form>
@@ -87,12 +101,13 @@
     
     function getFilms(e) {
       const key = document.querySelector('#key').value;
+      const cinema = document.querySelector('#cinema').value;
       const headers = new Headers();
       
       e.preventDefault();
       headers.set('Authorization', 'Bearer ' + key);
       
-      fetch('https://api.list.co.uk/v1/events?place_id=418fdadd-4f1e-b60e-03e0-bcc4000031d6&tags=film', { headers: headers })
+      fetch('https://api.list.co.uk/v1/events?place_id=' + cinema + '&tags=film', { headers: headers })
       .then(function(response) { return response.json(); })
       .then(function(data) {
         const results = document.querySelector('#results');
@@ -164,7 +179,7 @@
         `;
       });
     }
-        
+    
     function prepareForPrint() {
       let anyChecked = false;
       const all = document.querySelectorAll('.check-print');
@@ -212,7 +227,7 @@
     
     // ie, firefox
     window.onbeforeprint = prepareForPrint;
-
+    
     submit.addEventListener('click', getFilms);
   </script>
 </body>
