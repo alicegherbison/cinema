@@ -15,13 +15,11 @@
       
       table {
         margin-top: 20px;
-        background-color: green;
       }
       
       th {
         /*position: absolute;*/
         padding: 10px 10px 10px 0;
-        background-color: yellow;
       }
       
       tr:not(:last-of-type) {
@@ -30,13 +28,16 @@
       
       td {
         padding: 10px 0 10px 20px;
-        background-color: blue;
       }
       
       .time {
-        background-color: red;
+        display: inline-block;
+        padding-right: 20px;
       }
-      
+
+      .time:last-of-type {
+        padding-right: 0;
+      }
     }
     
     @media print {
@@ -123,9 +124,10 @@
         results.innerHTML = '';
         
         data.forEach(function(film) {
+          console.log(film.name);
           let storeDay;
+          let storeDate = 0;
           let dailyTimes;
-          let storeDailyTimes = [];
           let dailyTimesCell = document.createElement('td');
           const showtimes = document.createElement('table');
           const showtimesData = film.schedules[0].performances;
@@ -145,17 +147,68 @@
             dateText.innerHTML = showingDay + '&nbsp;' + showingDate + '&nbsp;' + showingMonth;
             timeText.innerHTML = showingHour + ':' + showingMinutes;
             
-            dailyTimesCell.appendChild(timeText);
-            
-            if (storeDay != showingDay) {
+            console.log('storeDay start: ' + storeDay);
+            console.log('showingDay: ' + showingDay);
+            console.log(timeText);
+
+            if (storeDay === showingDay) {
+              dailyTimesCell.appendChild(timeText);
+              console.log('Adding current time to cell on same day');
+            } else {
+              dailyTimesCell = document.createElement('td');
+              console.log('Resetting time cell to blank');
+              dailyTimes = document.createElement('tr');
+              console.log('Creating row');
+              dailyTimes.prepend(dateText);
+              dailyTimesCell.appendChild(timeText);
+              console.log('Adding current time to cell');
+              dailyTimes.appendChild(dailyTimesCell);
+              console.log('Adding cell of times to row');
+              showtimes.appendChild(dailyTimes);
+              console.log('Adding row to table');
+              
+            }
+
+            {{/*  if (storeDay != showingDay) {
+              dailyTimes = document.createElement('tr');
+              console.log('Creating row');
+              dailyTimes.prepend(dateText);
+              dailyTimesCell.appendChild(timeText);
+              console.log('Adding current time to cell');
+              dailyTimes.appendChild(dailyTimesCell);
+              console.log('Adding cell of times to row');
+              showtimes.appendChild(dailyTimes);
+              console.log('Adding row to table');
+              dailyTimesCell = document.createElement('td');
+              console.log('Resetting time cell to blank');
+            } else {
+              dailyTimesCell.appendChild(timeText);
+              console.log('Adding current time to cell on same day');
+            }  */}}
+
+            {{/*  if ((storeDay === undefined) || (storeDay === showingDay)) {
+              dailyTimesCell.appendChild(timeText);
+            } else {
+              dailyTimesCell.appendChild(timeText);
               dailyTimes = document.createElement('tr');
               dailyTimes.prepend(dateText);
               dailyTimes.appendChild(dailyTimesCell);
+              showtimes.appendChild(dailyTimes);
               dailyTimesCell = document.createElement('td');
-            }
-            showtimes.appendChild(dailyTimes);
+            }  */}}
+
+            {{/*  dailyTimesCell.appendChild(timeText);  */}}
+
+            {{/*  if (storeDay != showingDay) {
+              dailyTimes = document.createElement('tr');
+              dailyTimes.prepend(dateText);
+              dailyTimes.appendChild(dailyTimesCell);
+              showtimes.appendChild(dailyTimes);
+              dailyTimesCell = document.createElement('td');
+            }             */}}
             
             storeDay = days[showing.getDay()];
+            console.log('storeDay end: ' + storeDay);
           });
           
           const filmCard = /*html*/`
