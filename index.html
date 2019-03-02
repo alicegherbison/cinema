@@ -103,8 +103,8 @@
       return x;
     }
     
-    function ignoreSubtitled(performance) {
-      if(!(performance.hasOwnProperty('properties') && performance.properties.hasOwnProperty('event.film.subtitled'))) {
+    function ignoreSubtitled(showing) {
+      if(!(showing.hasOwnProperty('properties') && showing.properties.hasOwnProperty('event.film.subtitled'))) {
         return true;
       }
     }
@@ -121,94 +121,44 @@
       .then(function(response) { return response.json(); })
       .then(function(data) {
         const results = document.querySelector('#results');
-        results.innerHTML = '';
         
         data.forEach(function(film) {
-          console.log(film.name);
-          let storeDay;
-          let storeDate = 0;
-          let dailyTimes;
-          let dailyTimesCell = document.createElement('td');
-          const showtimes = document.createElement('table');
+          let prevDate;
+          let dayRow;
+          let timesCell = document.createElement('td');
+          const showtimesTable = document.createElement('table');
           const showtimesData = film.schedules[0].performances;
           
-          showtimesData.filter(ignoreSubtitled).forEach(function(performance)  {            
-            const showing = new Date(performance.ts);     
-            const showingDay = days[showing.getDay()];
-            const showingDate = addZero(showing.getDate());
-            const showingMonth = months[showing.getMonth()];
-            const showingHour = addZero(showing.getHours());
-            const showingMinutes = addZero(showing.getMinutes());
-            const dateText = document.createElement('th');
+          showtimesData.filter(ignoreSubtitled).forEach(function(showing)  {            
+            const timestamp = new Date(showing.ts);     
+            const showingWeekday = days[timestamp.getDay()];
+            const showingDay = addZero(timestamp.getDate());
+            const showingMonth = months[timestamp.getMonth()];
+            const showingYear = timestamp.getFullYear();
+            const showingHour = addZero(timestamp.getHours());
+            const showingMinutes = addZero(timestamp.getMinutes());
+            const showingDate = showingDay + showingMonth + showingYear;
+            const dateCell = document.createElement('th');
             const timeText = document.createElement('span');
 
             timeText.classList.add('time');
             
-            dateText.innerHTML = showingDay + '&nbsp;' + showingDate + '&nbsp;' + showingMonth;
+            dateCell.innerHTML = showingWeekday + '&nbsp;' + showingDay + '&nbsp;' + showingMonth;
             timeText.innerHTML = showingHour + ':' + showingMinutes;
-            
-            console.log('storeDay start: ' + storeDay);
-            console.log('showingDay: ' + showingDay);
-            console.log(timeText);
 
-            if (storeDay === showingDay) {
-              dailyTimesCell.appendChild(timeText);
-              console.log('Adding current time to cell on same day');
+            if (prevDate === showingDate) {
+              timesCell.appendChild(timeText);
             } else {
-              dailyTimesCell = document.createElement('td');
-              console.log('Resetting time cell to blank');
-              dailyTimes = document.createElement('tr');
-              console.log('Creating row');
-              dailyTimes.prepend(dateText);
-              dailyTimesCell.appendChild(timeText);
-              console.log('Adding current time to cell');
-              dailyTimes.appendChild(dailyTimesCell);
-              console.log('Adding cell of times to row');
-              showtimes.appendChild(dailyTimes);
-              console.log('Adding row to table');
-              
+              dayRow = document.createElement('tr');
+              timesCell = document.createElement('td');
+
+              dayRow.appendChild(dateCell);
+              dayRow.appendChild(timesCell);
+              timesCell.appendChild(timeText);
+              showtimesTable.appendChild(dayRow);              
             }
-
-            {{/*  if (storeDay != showingDay) {
-              dailyTimes = document.createElement('tr');
-              console.log('Creating row');
-              dailyTimes.prepend(dateText);
-              dailyTimesCell.appendChild(timeText);
-              console.log('Adding current time to cell');
-              dailyTimes.appendChild(dailyTimesCell);
-              console.log('Adding cell of times to row');
-              showtimes.appendChild(dailyTimes);
-              console.log('Adding row to table');
-              dailyTimesCell = document.createElement('td');
-              console.log('Resetting time cell to blank');
-            } else {
-              dailyTimesCell.appendChild(timeText);
-              console.log('Adding current time to cell on same day');
-            }  */}}
-
-            {{/*  if ((storeDay === undefined) || (storeDay === showingDay)) {
-              dailyTimesCell.appendChild(timeText);
-            } else {
-              dailyTimesCell.appendChild(timeText);
-              dailyTimes = document.createElement('tr');
-              dailyTimes.prepend(dateText);
-              dailyTimes.appendChild(dailyTimesCell);
-              showtimes.appendChild(dailyTimes);
-              dailyTimesCell = document.createElement('td');
-            }  */}}
-
-            {{/*  dailyTimesCell.appendChild(timeText);  */}}
-
-            {{/*  if (storeDay != showingDay) {
-              dailyTimes = document.createElement('tr');
-              dailyTimes.prepend(dateText);
-              dailyTimes.appendChild(dailyTimesCell);
-              showtimes.appendChild(dailyTimes);
-              dailyTimesCell = document.createElement('td');
-            }             */}}
             
-            storeDay = days[showing.getDay()];
-            console.log('storeDay end: ' + storeDay);
+            prevDate = showingDate;
           });
           
           const filmCard = /*html*/`
@@ -216,7 +166,7 @@
             <div class="card-body">
               <h2>${film.name}</h2>
               <div class="table-responsive">
-                ${showtimes.outerHTML}
+                ${showtimesTable.outerHTML}
               </div>
             </div>
             <div class="card-footer text-muted">
