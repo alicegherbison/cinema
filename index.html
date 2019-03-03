@@ -16,10 +16,13 @@
       table {
         margin-top: 20px;
       }
+
+      th,td {
+        vertical-align: top;
+      }
       
       th {
-        /*position: absolute;*/
-        padding: 10px 10px 10px 0;
+        padding: 10px 0;
       }
       
       tr:not(:last-of-type) {
@@ -27,16 +30,12 @@
       }
       
       td {
-        padding: 10px 0 10px 20px;
+        padding: 5px 0 5px 10px;
       }
       
       .time {
         display: inline-block;
-        padding-right: 20px;
-      }
-
-      .time:last-of-type {
-        padding-right: 0;
+        padding: 5px 10px;
       }
     }
     
@@ -165,9 +164,7 @@
           <div class="film card mb-2" data-id="${film.event_id}">
             <div class="card-body">
               <h2>${film.name}</h2>
-              <div class="table-responsive">
                 ${showtimesTable.outerHTML}
-              </div>
             </div>
             <div class="card-footer text-muted">
               <div class="form-check">
