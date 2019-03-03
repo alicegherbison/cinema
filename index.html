@@ -107,6 +107,11 @@
         return true;
       }
     }
+
+    function nextWeekOnly(showing) {
+      const currentDate = new Date();
+      const showingDate = new Date(showing.ts);
+    }
     
     function getFilms(e) {
       const key = document.querySelector('#key').value;
