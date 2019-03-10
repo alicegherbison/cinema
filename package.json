@@ -1,0 +1,22 @@
+{
+  "name": "cinema",
+  "version": "1.0.0",
+  "description": "[Film Finder](https://alicegherbison.github.io/cinema) is a **work in progress** to help a family member plan cinema visits.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alicegherbison/cinema.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alicegherbison/cinema/issues"
+  },
+  "homepage": "https://github.com/alicegherbison/cinema#readme",
+  "devDependencies": {
+    "gulp": "^4.0.0"
+  }
+}
