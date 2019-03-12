@@ -3,7 +3,7 @@ var del = require('del');
 var useref = require('gulp-useref');
 var gulpIf = require('gulp-if');
 var uglify = require('gulp-uglify');
-var runSequence = require('run-sequence');
+var runSequence = require('gulp4-run-sequence');
 var deploy = require('gulp-gh-pages');
 
 gulp.task('clean:dist', function() {
