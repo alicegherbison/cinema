@@ -16,7 +16,11 @@ gulp.task('useref', function(){
     .pipe(gulp.dest('dist'))
 });
 
-gulp.task('deploy', function () {
+gulp.task('build', function(callback) {
+  runSequence('clean:dist', 'useref', callback)
+});
+
+gulp.task('deploy', function() {
   return gulp.src("./dist/**/*")
     .pipe(deploy())
 });
