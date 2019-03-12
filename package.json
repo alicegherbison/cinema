@@ -23,6 +23,7 @@
     "gulp-if": "^2.0.2",
     "gulp-uglify": "^3.0.2",
     "gulp-useref": "^3.1.6",
-    "run-sequence": "^2.2.1"
-  }
+    "gulp4-run-sequence": "^0.3.1"
+  },
+  "dependencies": {}
 }

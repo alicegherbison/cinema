@@ -1,8 +1,9 @@
 var gulp = require('gulp');
-var useref = require('gulp-useref');
-var uglify = require('gulp-uglify');
-var gulpIf = require('gulp-if');
 var del = require('del');
+var useref = require('gulp-useref');
+var gulpIf = require('gulp-if');
+var uglify = require('gulp-uglify');
+var runSequence = require('run-sequence');
 var deploy = require('gulp-gh-pages');
 
 gulp.task('clean:dist', function() {
