@@ -12,10 +12,30 @@ gulp.task('clean:dist', function(done) {
   done();
 });
 
+gulp.task('copy', function(done) {
+  gulp.src('src/*.html')
+  .pipe(gulp.dest('dist'));
+  done();
+});
+
+gulp.task('babel', function(done){
+  gulp.src('src/*.js')
+  .pipe(babel())
+  .pipe(gulp.dest('dist'));
+  done();
+});
+
+gulp.task('argh', function(done) {
+  gulp.src('src/*.js')
+  .pipe(babel())
+  .pipe(gulp.dest('dist'))
+  done();
+});
+
 gulp.task('useref', function(done){
   gulp.src('src/*.html')
   .pipe(useref())
-  .pipe(babel())
+  .pipe(gulpIf('*.js', babel()))
   .pipe(gulpIf('*.js', uglify()))
   .pipe(gulp.dest('dist'));
   done();
