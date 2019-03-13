@@ -27,8 +27,11 @@
     "gulp-if": "^2.0.2",
     "gulp-minify": "^3.1.0",
     "gulp-uglify": "^3.0.2",
+    "gulp-usemin": "^0.3.29",
     "gulp-useref": "^3.1.6",
     "gulp4-run-sequence": "^0.3.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "gulp-htmlmin": "^5.0.1"
+  }
 }
