@@ -10,6 +10,7 @@ const runSequence = require('gulp4-run-sequence');
 const deploy = require('gulp-gh-pages');
 const usemin = require('gulp-usemin');
 const htmlmin = require('gulp-htmlmin');
+const sass = require('gulp-sass');
 
 function js() {
   return gulp.src('src/js/*.js')
@@ -29,6 +30,12 @@ function jsTest() {
   })))
   .pipe(gulpIf('*.js', uglify()))
   .pipe(gulp.dest('dist'));
+}
+
+function trySass() {
+  return gulp.src('src/sass/main.scss')
+  .pipe(sass()) // Converts Sass to CSS with gulp-sass
+  .pipe(gulp.dest('dist/css'))
 }
 
 function tryUsemin() {
@@ -87,3 +94,4 @@ gulp.task('deploy', function() {
 exports.js = js;
 exports.jsTest = jsTest;
 exports.tryUsemin = tryUsemin;
+exports.trySass = trySass;
