@@ -122,7 +122,7 @@ function prepareForPrint() {
       film.classList.remove('no-print');
     }
   });
-};
+}
 
 // webkit
 if (window.matchMedia) {
