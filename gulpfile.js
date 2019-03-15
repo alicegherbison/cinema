@@ -11,6 +11,7 @@ const deploy = require('gulp-gh-pages');
 const usemin = require('gulp-usemin');
 const htmlmin = require('gulp-htmlmin');
 const sass = require('gulp-sass');
+const csso = require('gulp-csso');
 
 function clean(done) {
   del.sync('dist');
@@ -42,9 +43,10 @@ function jsTest() {
   .pipe(gulp.dest('dist'));
 }
 
-function trySass() {
+function css() {
   return gulp.src('src/sass/**/*.scss')
   .pipe(sass())
+  .pipe(csso())
   .pipe(gulp.dest('dist/css'))
 }
 
@@ -99,7 +101,7 @@ gulp.task('deploy', function() {
 exports.js = js;
 exports.jsTest = jsTest;
 exports.tryUsemin = tryUsemin;
-exports.trySass = trySass;
+exports.css = css;
 exports.clean = clean;
 
 // development
