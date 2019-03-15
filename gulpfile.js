@@ -12,6 +12,16 @@ const usemin = require('gulp-usemin');
 const htmlmin = require('gulp-htmlmin');
 const sass = require('gulp-sass');
 
+function clean(done) {
+  del.sync('dist');
+  done();
+}
+
+gulp.task('clean:dist', function(done) {
+  del.sync('dist');
+  done();
+});
+
 function js() {
   return gulp.src('src/js/*.js')
   .pipe(babel({
@@ -33,8 +43,8 @@ function jsTest() {
 }
 
 function trySass() {
-  return gulp.src('src/sass/main.scss')
-  .pipe(sass()) // Converts Sass to CSS with gulp-sass
+  return gulp.src('src/sass/**/*.scss')
+  .pipe(sass())
   .pipe(gulp.dest('dist/css'))
 }
 
@@ -46,11 +56,6 @@ function tryUsemin() {
   }))
   .pipe(gulp.dest('dist'));
 }
-
-gulp.task('clean:dist', function(done) {
-  del.sync('dist');
-  done();
-});
 
 gulp.task('copy', function(done) {
   gulp.src('src/*.html')
@@ -95,3 +100,21 @@ exports.js = js;
 exports.jsTest = jsTest;
 exports.tryUsemin = tryUsemin;
 exports.trySass = trySass;
+exports.clean = clean;
+
+// development
+// spin up browserSync (this is the server)
+// watch compiles the sass to css on save
+
+// build
+// compile sass, minify
+// convert js to es5, minify
+// minify html
+// put all into dist folder
+
+// deploy
+// go via gh-pages
+
+// default (development run)
+// build
+// deploy
