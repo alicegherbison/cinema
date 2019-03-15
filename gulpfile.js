@@ -60,26 +60,6 @@ function tryUsemin() {
   .pipe(gulp.dest('dist'));
 }
 
-gulp.task('copy', function(done) {
-  gulp.src('src/*.html')
-  .pipe(gulp.dest('dist'));
-  done();
-});
-
-gulp.task('babel', function(done){
-  gulp.src('src/*.js')
-  .pipe(babel())
-  .pipe(gulp.dest('dist'));
-  done();
-});
-
-gulp.task('argh', function(done) {
-  gulp.src('src/*.js')
-  .pipe(babel())
-  .pipe(gulp.dest('dist'))
-  done();
-});
-
 gulp.task('useref', function(done){
   gulp.src('src/*.html')
   .pipe(useref())
