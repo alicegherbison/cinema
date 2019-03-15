@@ -18,10 +18,12 @@ function clean(done) {
   done();
 }
 
-gulp.task('clean:dist', function(done) {
-  del.sync('dist');
-  done();
-});
+function css() {
+  return gulp.src('src/sass/**/*.scss')
+  .pipe(sass())
+  .pipe(csso())
+  .pipe(gulp.dest('dist/css'))
+}
 
 function js() {
   return gulp.src('src/js/*.js')
@@ -33,6 +35,12 @@ function js() {
   .pipe(gulp.dest('dist/js'));
 };
 
+function html() {
+  return gulp.src('src/*.html')
+  .pipe(htmlmin({ collapseWhitespace: true }))
+  .pipe(gulp.dest('dist'));
+}
+
 function jsTest() {
   return gulp.src('src/*.html')
   .pipe(useref())
@@ -41,13 +49,6 @@ function jsTest() {
   })))
   .pipe(gulpIf('*.js', uglify()))
   .pipe(gulp.dest('dist'));
-}
-
-function css() {
-  return gulp.src('src/sass/**/*.scss')
-  .pipe(sass())
-  .pipe(csso())
-  .pipe(gulp.dest('dist/css'))
 }
 
 function tryUsemin() {
@@ -103,6 +104,7 @@ exports.jsTest = jsTest;
 exports.tryUsemin = tryUsemin;
 exports.css = css;
 exports.clean = clean;
+exports.html = html;
 
 // development
 // spin up browserSync (this is the server)
