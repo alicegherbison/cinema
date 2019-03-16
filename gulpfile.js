@@ -21,8 +21,8 @@ function clean(done) {
 function css() {
   return gulp.src(['node_modules/bootstrap/scss/bootstrap.scss', 'src/sass/**/*.scss'])
   .pipe(sass())
+  .pipe(concat('build.min.css'))
   .pipe(csso())
-  .pipe(concat('build.min.scss'))
   .pipe(gulp.dest('dist/css'))
 }
 
@@ -31,8 +31,8 @@ function js() {
   .pipe(babel({
     presets: ['@babel/env']
   }))
-  .pipe(uglify())
   .pipe(concat('build.min.js'))
+  .pipe(uglify())
   .pipe(gulp.dest('dist/js'));
 };
 
