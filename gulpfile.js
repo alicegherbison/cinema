@@ -19,9 +19,10 @@ function clean(done) {
 }
 
 function css() {
-  return gulp.src('src/sass/**/*.scss')
+  return gulp.src(['node_modules/bootstrap/scss/bootstrap.scss', 'src/sass/**/*.scss'])
   .pipe(sass())
   .pipe(csso())
+  .pipe(concat('build.min.scss'))
   .pipe(gulp.dest('dist/css'))
 }
 
