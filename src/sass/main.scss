@@ -3,3 +3,60 @@
 .testing {
   width: percentage(5/7);
 }
+
+@media screen {
+  body {
+    font-family: 'Curtive Mono', monospace;
+  }
+  
+  table {
+    margin-top: 20px;
+  }
+
+  th,td {
+    vertical-align: top;
+  }
+  
+  th {
+    padding: 10px 0;
+  }
+  
+  tr:not(:last-of-type) {
+    border-bottom: 1px solid #ddd;
+  }
+  
+  td {
+    padding: 5px 0 5px 10px;
+  }
+  
+  .time {
+    display: inline-block;
+    padding: 5px 10px;
+  }
+}
+
+@media print {
+  body {
+    font-family: 'Curtive Mono', monospace;
+    font-size: 8pt;
+  }
+  header, footer, #print, .card-footer, .no-print {
+    display: none;
+  }
+  h2 {
+    margin: 0;
+    font-size: 12pt;
+  }
+  #results {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .film {
+    margin-right: 20pt;
+    margin-bottom: 20pt;
+    flex-grow: 1;
+  }
+  .time {
+    padding: 0 5pt;
+  }
+}

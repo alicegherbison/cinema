@@ -12,11 +12,44 @@ const usemin = require('gulp-usemin');
 const htmlmin = require('gulp-htmlmin');
 const sass = require('gulp-sass');
 const csso = require('gulp-csso');
+const browserSync = require('browser-sync').create();
 
 function clean(done) {
   del.sync('dist');
   done();
 }
+
+// development tasks
+
+function sassify() {
+  return gulp.src(['node_modules/bootstrap/scss/bootstrap.scss', 'src/sass/**/*.scss'])
+  .pipe(sass())
+  .pipe(browserSync.reload({stream:true}))
+  .pipe(gulp.dest('src/css'))
+}
+
+function watch() {
+  gulp.watch('src/sass/**/*.scss', gulp.series('sassify'));
+  gulp.watch('src/*.html', browserSync.reload); 
+  gulp.watch('src/js/**/*.js', browserSync.reload); 
+}
+
+function browser(done) {
+  browserSync.init({
+    server: {
+      baseDir: 'src',
+    },
+    port: 9999
+  })
+  done();
+}
+
+const serve = gulp.series(gulp.parallel(browser, sassify), watch);
+exports.default = serve;
+
+// build tasks
+
+// deploy tasks
 
 function css() {
   return gulp.src(['node_modules/bootstrap/scss/bootstrap.scss', 'src/sass/**/*.scss'])
@@ -86,7 +119,8 @@ exports.tryUsemin = tryUsemin;
 exports.css = css;
 exports.clean = clean;
 exports.html = html;
-
+exports.sassify = sassify;
+exports.watch = watch;
 // development
 // spin up browserSync (this is the server)
 // watch compiles the sass to css on save
