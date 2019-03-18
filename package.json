@@ -2,7 +2,7 @@
   "name": "cinema",
   "version": "1.0.0",
   "description": "[Film Finder](https://alicegherbison.github.io/cinema) is a **work in progress** to help a family member plan cinema visits.",
-  "main": "index.js",
+  "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/alicegherbison/cinema.git"
   },
-  "author": "",
+  "author": "Alice G Herbison",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/alicegherbison/cinema/issues"
@@ -26,17 +26,12 @@
     "gulp-concat": "^2.6.1",
     "gulp-csso": "^3.0.1",
     "gulp-gh-pages": "^0.5.4",
-    "gulp-if": "^2.0.2",
-    "gulp-minify": "^3.1.0",
+    "gulp-htmlmin": "^5.0.1",
     "gulp-rename": "^1.4.0",
     "gulp-sass": "^4.0.2",
-    "gulp-uglify": "^3.0.2",
-    "gulp-usemin": "^0.3.29",
-    "gulp-useref": "^3.1.6",
-    "gulp4-run-sequence": "^0.3.1"
+    "gulp-uglify": "^3.0.2"
   },
   "dependencies": {
-    "bootstrap": "^4.3.1",
-    "gulp-htmlmin": "^5.0.1"
+    "bootstrap": "^4.3.1"
   }
 }
