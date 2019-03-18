@@ -22,7 +22,7 @@ function clean(done) {
 // development tasks
 
 function sassify() {
-  return gulp.src(['node_modules/bootstrap/scss/bootstrap.scss', 'src/sass/**/*.scss'])
+  return gulp.src('src/sass/**/*.scss')
   .pipe(sass())
   .pipe(browserSync.reload({stream:true}))
   .pipe(gulp.dest('src/css'))
