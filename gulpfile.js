@@ -51,6 +51,7 @@ exports.default = serve;
 
 // deploy tasks
 
+// unfinished/tests
 function css() {
   return gulp.src(['node_modules/bootstrap/scss/bootstrap.scss', 'src/sass/**/*.scss'])
   .pipe(sass())
@@ -121,6 +122,9 @@ exports.clean = clean;
 exports.html = html;
 exports.sassify = sassify;
 exports.watch = watch;
+
+//notes
+
 // development
 // spin up browserSync (this is the server)
 // watch compiles the sass to css on save
@@ -133,7 +137,3 @@ exports.watch = watch;
 
 // deploy
 // go via gh-pages
-
-// default (development run)
-// build
-// deploy
