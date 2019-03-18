@@ -15,12 +15,20 @@ const csso = require('gulp-csso');
 const browserSync = require('browser-sync').create();
 const rename = require('gulp-rename');
 
+function browser(done) {
+  browserSync.init({
+    server: {
+      baseDir: 'dist',
+    },
+    port: 9999
+  })
+  done();
+}
+
 function clean(done) {
   del.sync('dist');
   done();
 }
-
-// development tasks
 
 function css(done) {
   gulp.src('src/sass/**/*.scss')
@@ -56,16 +64,6 @@ function watch(done) {
   done();
 }
 
-function browser(done) {
-  browserSync.init({
-    server: {
-      baseDir: 'dist',
-    },
-    port: 9999
-  })
-  done();
-}
-
 const build = gulp.series(clean, css, js, html);
 const serve = gulp.series(build, browser, watch);
 exports.serve = serve;
@@ -92,22 +90,6 @@ exports.build = build;
 //   .pipe(csso())
 //   .pipe(gulp.dest('dist/css'))
 // }
-
-function js() {
-  return gulp.src('src/js/*.js')
-  .pipe(babel({
-    presets: ['@babel/env']
-  }))
-  .pipe(concat('build.min.js'))
-  .pipe(uglify())
-  .pipe(gulp.dest('dist/js'));
-};
-
-function html() {
-  return gulp.src('src/*.html')
-  .pipe(htmlmin({ collapseWhitespace: true }))
-  .pipe(gulp.dest('dist'));
-}
 
 function jsTest() {
   return gulp.src('src/*.html')
@@ -153,7 +135,6 @@ exports.tryUsemin = tryUsemin;
 exports.css = css;
 exports.clean = clean;
 exports.html = html;
-// exports.sassify = sassify;
 exports.watch = watch;
 
 //notes
