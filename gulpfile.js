@@ -13,6 +13,7 @@ const htmlmin = require('gulp-htmlmin');
 const sass = require('gulp-sass');
 const csso = require('gulp-csso');
 const browserSync = require('browser-sync').create();
+const rename = require('gulp-rename');
 
 function clean(done) {
   del.sync('dist');
@@ -21,43 +22,65 @@ function clean(done) {
 
 // development tasks
 
-function sassify(done) {
+function css(done) {
   gulp.src('src/sass/**/*.scss')
   .pipe(sass())
-  .pipe(browserSync.reload({stream:true}))
-  .pipe(gulp.dest('src/css'))
+  .pipe(csso())
+  .pipe(rename('build.min.css'))
+  .pipe(gulp.dest('dist/css'))
+  done();
+}
+
+function js(done) {
+  gulp.src('src/js/*.js')
+  .pipe(babel({
+    presets: ['@babel/env']
+  }))
+  .pipe(concat('build.min.js'))
+  .pipe(uglify())
+  .pipe(gulp.dest('dist/js'));
+  done();
+};
+
+function html(done) {
+  gulp.src('src/*.html')
+  .pipe(htmlmin({ collapseWhitespace: true }))
+  .pipe(gulp.dest('dist'));
   done();
 }
 
 function watch(done) {
-  gulp.watch('src/sass/**/*.scss', gulp.series('sassify'));
-  gulp.watch('src/*.html', browserSync.reload); 
-  gulp.watch('src/js/**/*.js', browserSync.reload); 
+  gulp.watch('src/sass/**/*.scss', gulp.series('css')).on('change', browserSync.reload);
+  gulp.watch('src/js/**/*.js', gulp.series('js')).on('change', browserSync.reload);
+  gulp.watch('src/*.html', gulp.series('html')).on('change', browserSync.reload);
   done();
 }
 
 function browser(done) {
   browserSync.init({
     server: {
-      baseDir: 'src',
+      baseDir: 'dist',
     },
     port: 9999
   })
   done();
 }
 
-const serve = gulp.series(gulp.parallel(browser, sassify), watch);
-exports.default = serve;
+const build = gulp.series(clean, css, js, html);
+const serve = gulp.series(build, browser, watch);
+exports.serve = serve;
+exports.build = build;
+
 
 // build tasks
-function css(done) {
-  gulp.src('src/sass/**/*.scss')
-  .pipe(sass())
-  .pipe(concat('build.min.css'))
-  .pipe(csso())
-  .pipe(gulp.dest('dist/css'))
-  done();
-}
+// function css(done) {
+//   gulp.src('src/sass/**/*.scss')
+//   .pipe(sass())
+//   .pipe(concat('build.min.css'))
+//   .pipe(csso())
+//   .pipe(gulp.dest('dist/css'))
+//   done();
+// }
 
 // deploy tasks
 
@@ -130,7 +153,7 @@ exports.tryUsemin = tryUsemin;
 exports.css = css;
 exports.clean = clean;
 exports.html = html;
-exports.sassify = sassify;
+// exports.sassify = sassify;
 exports.watch = watch;
 
 //notes
