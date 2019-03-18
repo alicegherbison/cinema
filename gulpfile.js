@@ -50,17 +50,25 @@ const serve = gulp.series(gulp.parallel(browser, sassify), watch);
 exports.default = serve;
 
 // build tasks
-
-// deploy tasks
-
-// unfinished/tests
-function css() {
-  return gulp.src(['node_modules/bootstrap/scss/bootstrap.scss', 'src/sass/**/*.scss'])
+function css(done) {
+  gulp.src('src/sass/**/*.scss')
   .pipe(sass())
   .pipe(concat('build.min.css'))
   .pipe(csso())
   .pipe(gulp.dest('dist/css'))
+  done();
 }
+
+// deploy tasks
+
+// unfinished/tests
+// function css() {
+//   return gulp.src(['node_modules/bootstrap/scss/bootstrap.scss', 'src/sass/**/*.scss'])
+//   .pipe(sass())
+//   .pipe(concat('build.min.css'))
+//   .pipe(csso())
+//   .pipe(gulp.dest('dist/css'))
+// }
 
 function js() {
   return gulp.src('src/js/*.js')
