@@ -21,17 +21,19 @@ function clean(done) {
 
 // development tasks
 
-function sassify() {
-  return gulp.src('src/sass/**/*.scss')
+function sassify(done) {
+  gulp.src('src/sass/**/*.scss')
   .pipe(sass())
   .pipe(browserSync.reload({stream:true}))
   .pipe(gulp.dest('src/css'))
+  done();
 }
 
-function watch() {
+function watch(done) {
   gulp.watch('src/sass/**/*.scss', gulp.series('sassify'));
   gulp.watch('src/*.html', browserSync.reload); 
   gulp.watch('src/js/**/*.js', browserSync.reload); 
+  done();
 }
 
 function browser(done) {
