@@ -31,19 +31,19 @@ function getFilms(e) {
   headers.set('Authorization', `Bearer ${key}`);
   
   fetch(`https://api.list.co.uk/v1/events?place_id=${cinema}&tags=film`, { headers })
-  .then(function(response) { return response.json(); })
-  .then(function(data) {
+  .then(response => response.json())
+  .then(data => {
     const results = document.querySelector('#results');
     results.innerHTML = '';
     
-    data.forEach(function(film) {
+    data.forEach(film => {
       let prevDate;
       let dayRow;
       let timesCell = document.createElement('td');
       const showtimesTable = document.createElement('table');
       const showtimesData = film.schedules[0].performances;
       
-      showtimesData.filter(ignoreSubtitled).forEach(function(showing)  {            
+      showtimesData.filter(ignoreSubtitled).forEach(showing => {            
         const timestamp = new Date(showing.ts);     
         const showingWeekday = days[timestamp.getDay()];
         const showingDay = addZero(timestamp.getDate());
@@ -101,7 +101,7 @@ function prepareForPrint() {
   const checked = document.querySelectorAll('.check-print:checked');
   const unchecked = document.querySelectorAll('.check-print:not(:checked');
   
-  checked.forEach((checkbox) => {
+  checked.forEach(checkbox => {
     const id = checkbox.getAttribute('data-id');
     const film = document.querySelector(`.film[data-id="${id}"]`);
     
@@ -110,7 +110,7 @@ function prepareForPrint() {
     }
   });
   
-  unchecked.forEach((checkbox) => {
+  unchecked.forEach(checkbox => {
     const id = checkbox.getAttribute('data-id');
     const film = document.querySelector(`.film[data-id="${id}"]`);
     
@@ -127,7 +127,7 @@ function prepareForPrint() {
 // webkit
 if (window.matchMedia) {
   const mediaQueryList = window.matchMedia('print');
-  mediaQueryList.addListener(function(mql) {
+  mediaQueryList.addListener(mql => {
     if (mql.matches) {
       prepareForPrint();
     }
