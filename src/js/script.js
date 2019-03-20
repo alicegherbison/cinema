@@ -28,9 +28,9 @@ function getFilms(e) {
   const headers = new Headers();
   
   e.preventDefault();
-  headers.set('Authorization', 'Bearer ' + key);
+  headers.set('Authorization', `Bearer ${key}`);
   
-  fetch('https://api.list.co.uk/v1/events?place_id=' + cinema + '&tags=film', { headers: headers })
+  fetch(`https://api.list.co.uk/v1/events?place_id=${cinema}&tags=film`, { headers })
   .then(function(response) { return response.json(); })
   .then(function(data) {
     const results = document.querySelector('#results');
@@ -57,8 +57,8 @@ function getFilms(e) {
         
         timeText.classList.add('time');
         
-        dateCell.innerHTML = showingWeekday + '&nbsp;' + showingDay + '&nbsp;' + showingMonth;
-        timeText.innerHTML = showingHour + ':' + showingMinutes;
+        dateCell.innerHTML = `${showingWeekday}&nbsp;${showingDay}&nbsp;${showingMonth}`;
+        timeText.innerHTML = `${showingHour}:${showingMinutes}`;
         
         if (prevDate === showingDate) {
           timesCell.appendChild(timeText);
@@ -132,7 +132,7 @@ if (window.matchMedia) {
       prepareForPrint();
     }
   });
-}
+};
 
 // ie, firefox
 window.onbeforeprint = prepareForPrint;
