@@ -57,7 +57,7 @@ function watch(done) {
   done();
 }
 
-function deploy(done) {
+function push(done) {
   gulp.src('dist/**/*')
   .pipe(ghPages())
   done();
@@ -65,6 +65,7 @@ function deploy(done) {
 
 const build = gulp.series(clean, gulp.parallel(css, js, html));
 const serve = gulp.series(build, browser, watch);
+const deploy = gulp.series(build, push);
 
 exports.serve = serve;
 exports.build = build;
