@@ -63,7 +63,7 @@ function deploy(done) {
   done();
 };
 
-const build = gulp.series(clean, css, js, html);
+const build = gulp.series(clean, gulp.parallel(css, js, html));
 const serve = gulp.series(build, browser, watch);
 
 exports.serve = serve;
