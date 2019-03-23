@@ -5,6 +5,8 @@ const rename = require('gulp-rename');
 const concat = require('gulp-concat');
 const sass = require('gulp-sass');
 const csso = require('gulp-csso');
+const plumber = require('gulp-plumber');
+const eslint = require('gulp-eslint');
 const babel = require('gulp-babel');
 const uglify = require('gulp-uglify');
 const htmlmin = require('gulp-htmlmin');
@@ -36,6 +38,9 @@ function css(done) {
 
 function js(done) {
   gulp.src('src/js/*.js')
+  .pipe(plumber())
+  .pipe(eslint())
+  .pipe(eslint.format())
   .pipe(babel({ presets: ['@babel/env'] }))
   .pipe(concat('build.min.js'))
   .pipe(uglify())
