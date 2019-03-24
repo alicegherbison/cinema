@@ -1,15 +1,13 @@
 @charset 'UTF-8';
-@import "../../node_modules/bootstrap/scss/bootstrap";
+@import '../../node_modules/bootstrap/scss/bootstrap';
 
-.testing {
-  width: percentage(5/7);
-}
+@import 'base/typography';
 
 @media screen {
   body {
     font-family: 'Curtive Mono', monospace;
   }
-  
+
   table {
     margin-top: 20px;
   }
@@ -17,19 +15,19 @@
   th,td {
     vertical-align: top;
   }
-  
+
   th {
     padding: 10px 0;
   }
-  
+
   tr:not(:last-of-type) {
     border-bottom: 1px solid #ddd;
   }
-  
+
   td {
     padding: 5px 0 5px 10px;
   }
-  
+
   .time {
     display: inline-block;
     padding: 5px 10px;

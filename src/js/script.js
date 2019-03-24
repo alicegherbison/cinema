@@ -118,7 +118,6 @@ function prepareForPrint() {
   });
 }
 
-// webkit
 if (window.matchMedia) {
   const mediaQueryList = window.matchMedia('print');
   mediaQueryList.addListener((mql) => {
