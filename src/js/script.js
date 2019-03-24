@@ -86,7 +86,7 @@ function getFilms(e) {
       results.innerHTML += filmCard;
     });
     results.innerHTML += /* html */`
-    <div class="text-center mt-4"><a href="javascript:window.print()" id="print" class="btn btn-primary">print</a></div>
+    <div class="text-center mt-4"><a href="javascript:window.print()" class="btn btn-primary print">print</a></div>
     `;
   });
 }
