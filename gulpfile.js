@@ -3,6 +3,7 @@ const browserSync = require('browser-sync').create();
 const del = require('del');
 const rename = require('gulp-rename');
 const concat = require('gulp-concat');
+const sassLint = require('gulp-sass-lint');
 const sass = require('gulp-sass');
 const csso = require('gulp-csso');
 const plumber = require('gulp-plumber');
@@ -29,6 +30,9 @@ function clean(done) {
 
 function css(done) {
   gulp.src('src/sass/**/*.scss')
+  .pipe(plumber())
+  .pipe(sassLint())
+  .pipe(sassLint.format())
   .pipe(sass())
   .pipe(csso())
   .pipe(rename('build.min.css'))
