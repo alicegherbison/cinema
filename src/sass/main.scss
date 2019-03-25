@@ -1,8 +1,10 @@
 @charset 'UTF-8';
-@import '../../node_modules/bootstrap/scss/bootstrap';
+// @import '../../node_modules/bootstrap/scss/bootstrap';
 
 @import 'utils/variables';
 
+@import 'base/reset';
+@import 'base/global';
 @import 'base/typography';
 
 @media screen {
