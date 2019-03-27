@@ -1,6 +1,12 @@
 body {
-  background-color: $color-grey-dark;
+  background-color: $body-bg;
   color: $color-straw;
+}
+
+a {
+  background-color: transparent;
+  color: $link-color;
+  text-decoration: none;
 }
 
 .wrapper {
