@@ -1,0 +1,15 @@
+@mixin responsive($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (min-width: #{map-get($breakpoints, $breakpoint)}) {
+      @content;
+    }
+  }
+}
+
+@mixin responsive-test($max-widths: $wrapper-max-widths, $breakpoints: $breakpoints) {
+  @each $breakpoint, $wrapper-max-width in $max-widths {
+    @include responsive($breakpoint) {
+      max-width: $wrapper-max-width;
+    }
+  }
+}

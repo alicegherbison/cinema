@@ -1,3 +1,7 @@
-@media (min-width: 576px) {
+.wrapper {
+  @include responsive-test();
 
+  margin: 0 auto;
+  padding: 0 3.2rem;
+  width: 100%;
 }
