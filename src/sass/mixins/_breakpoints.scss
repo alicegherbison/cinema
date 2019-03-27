@@ -1,15 +1,13 @@
-@mixin responsive($breakpoint) {
-  @if map-has-key($breakpoints, $breakpoint) {
-    @media (min-width: #{map-get($breakpoints, $breakpoint)}) {
-      @content;
-    }
+@mixin breakpoint($breakpoint) {
+  @media (min-width: map-get($breakpoints, $breakpoint)) {
+    @content;
   }
 }
 
-@mixin responsive-test($max-widths: $wrapper-max-widths, $breakpoints: $breakpoints) {
-  @each $breakpoint, $wrapper-max-width in $max-widths {
-    @include responsive($breakpoint) {
+@mixin wrapper-max-widths($max-widths-map: $wrapper-max-widths, $breakpoints-map: $breakpoints) {
+  @each $breakpoint, $wrapper-max-width in $wrapper-max-widths {
+    @include breakpoint($breakpoint) {
       max-width: $wrapper-max-width;
-    }
+    };
   }
 }
