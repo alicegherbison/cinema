@@ -29,6 +29,7 @@ $spacer: 1.6rem;
 
 // body
 $body-bg: $color-grey-dark;
+$body-color: $color-straw;
 
 // typography
 $font-primary: 'Curtive Mono', monospace;
@@ -52,3 +53,12 @@ $h6-font-size: $font-size-base;
 
 // links
 $link-color: $color-cyan;
+
+// forms
+$form-element-border-radius: .4rem;
+$form-element-border-color: $color-lime;
+$form-element-bg-color: $color-grey-dark;
+$form-element-font-family: $font-primary;
+
+$btn-bg-color: $color-lime;
+$btn-color: $color-grey-dark;
