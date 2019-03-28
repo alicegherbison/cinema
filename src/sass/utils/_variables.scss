@@ -1,3 +1,16 @@
+// colours
+$color-grey-dark: #2c292d;
+$color-grey-mid: #727272;
+$color-lilac: #ab9df2;
+$color-magenta: #ff6188;
+$color-peach: #fc9867;
+$color-lemon: #ffd866;
+$color-lime: #a9dc76;
+$color-cyan: #78dce8;
+$color-straw: #fcfcfa;
+$color-grey: #ddd;
+
+// layout
 $breakpoints: (
   'sm': 576px,
   'md': 768px,
@@ -12,20 +25,30 @@ $wrapper-max-widths: (
   'xl': 1140px
 );
 
-$font-primary: 'Curtive Mono', monospace;
-$font-size-base: 1.6rem;
+$spacer: 1.6rem;
 
-$color-grey-dark: #2c292d;
-$color-grey-mid: #727272;
-$color-lilac: #ab9df2;
-$color-magenta: #ff6188;
-$color-peach: #fc9867;
-$color-lemon: #ffd866;
-$color-lime: #a9dc76;
-$color-cyan: #78dce8;
-$color-straw: #fcfcfa;
-$color-grey: #ddd;
-
+// body
 $body-bg: $color-grey-dark;
 
+// typography
+$font-primary: 'Curtive Mono', monospace;
+$font-size-base: 1.6rem;
+$line-height-base: 1.5;
+
+$headings-font-weight: bold;
+$headings-margin-bottom: $spacer / 2;
+$headings-line-height: 1.2;
+
+$paragraph-margin-bottom: $spacer;
+
+$hr-margin-bottom: $spacer;
+
+$h1-font-size: $font-size-base * 2.5;
+$h2-font-size: $font-size-base * 2;
+$h3-font-size: $font-size-base * 1.75;
+$h4-font-size: $font-size-base * 1.5;
+$h5-font-size: $font-size-base * 1.25;
+$h6-font-size: $font-size-base;
+
+// links
 $link-color: $color-cyan;

@@ -6,7 +6,11 @@ body {
 a {
   background-color: transparent;
   color: $link-color;
-  text-decoration: none;
+  text-decoration: underline;
+
+  &:hover {
+    text-decoration: none;
+  }
 }
 
 .wrapper {

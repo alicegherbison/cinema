@@ -1,3 +1,4 @@
+// global
 html {
   font-size: 62.5%;
 }
@@ -5,4 +6,40 @@ html {
 body {
   font-family: $font-primary;
   font-size: $font-size-base;
+  line-height: $line-height-base;
+}
+
+// headings
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: $headings-font-weight;
+  line-height: $headings-line-height;
+  margin-bottom: $headings-margin-bottom;
+}
+
+h1 {
+  color: $color-magenta;
+  font-size: $h1-font-size;
+  text-transform: uppercase;
+}
+
+h2 { font-size: $h2-font-size; }
+h3 { font-size: $h3-font-size; }
+h4 { font-size: $h4-font-size; }
+h5 { font-size: $h5-font-size; }
+h6 { font-size: $h6-font-size; }
+
+p {
+  margin-bottom: $paragraph-margin-bottom;
+  margin-top: 0;
+}
+
+hr {
+  border: .08rem solid;
+  color: $color-lemon;
+  margin-bottom: $paragraph-margin-bottom;
 }
