@@ -8,8 +8,17 @@ a {
   color: $link-color;
   text-decoration: underline;
 
-  &:hover {
+  &:hover,
+  &:focus {
     text-decoration: none;
+
+    &:not(:focus-visible) {
+      outline: none;
+    }
+  }
+
+  &:visited {
+    color: $link-color;
   }
 }
 
