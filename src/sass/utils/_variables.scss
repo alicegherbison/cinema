@@ -51,11 +51,14 @@ $h4-font-size: $font-size-base * 1.5;
 $h5-font-size: $font-size-base * 1.25;
 $h6-font-size: $font-size-base;
 
+// borders
+$border-width: .2rem;
+$border-radius: .4rem;
+
 // links
 $link-color: $color-cyan;
 
 // forms
-$form-element-border-radius: .4rem;
 $form-element-border-color: $color-lime;
 $form-element-bg-color: $color-grey-dark;
 $form-element-font-family: $font-primary;

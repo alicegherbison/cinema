@@ -39,7 +39,7 @@ p {
 }
 
 hr {
-  border: .08rem solid;
+  border: $border-width / 2 solid;
   color: $color-lemon;
   margin-bottom: $paragraph-margin-bottom;
 }

@@ -25,25 +25,33 @@ a {
 button,
 input,
 select {
-  border: .16rem solid $form-element-border-color;
-  border-radius: $form-element-border-radius;
+  border: .2rem solid $form-element-border-color;
+  border-radius: $border-radius;
   font-family: $form-element-font-family;
   font-size: $font-size-base;
 }
 
 button {
   background-color: $btn-bg-color;
-  border: 0;
   color: $btn-color;
   cursor: pointer;
   font-weight: bold;
   padding: .8rem 1.4rem;
+
+  &:focus {
+    box-shadow: 0 0 0 $border-width $color-cyan;
+  }
 }
 
 input,
 select {
   background-color: $form-element-bg-color;
   width: 100%;
+
+  &:focus {
+    border-color: $color-cyan;
+    box-shadow: 0 0 0 $border-width / 4 $color-cyan;
+  }
 }
 
 .wrapper {
