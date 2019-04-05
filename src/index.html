@@ -21,22 +21,18 @@
               <hr/>
               <form>
                 <div class="form-row">
-                  <div class="col">
-                    <div class="form-group">
-                      <label for="cinema">Cinema</label>
-                      <select class="form-control" id="cinema">
-                        <option value="418fdadd-4f1e-b60e-03e0-bcc4000031d6" selected>Fountainpark</option>
-                        <option value="499fdadd-4f1e-b60e-33e0-bcc400003a86">Renfrew Street</option>
-                        <option value="3a9fdadd-4f1e-b60e-33e0-bcc40000394c">Falkirk</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div class="form-group">
-                      <label for="key">Key</label>
-                      <input id="key" type="text" class="form-control" required>
-                    </div>
-                  </div>
+                  <fieldset>
+                    <label for="cinema">Cinema</label>
+                    <select id="cinema">
+                      <option value="418fdadd-4f1e-b60e-03e0-bcc4000031d6" selected>Fountainpark</option>
+                      <option value="499fdadd-4f1e-b60e-33e0-bcc400003a86">Renfrew Street</option>
+                      <option value="3a9fdadd-4f1e-b60e-33e0-bcc40000394c">Falkirk</option>
+                    </select>
+                  </fieldset>
+                  <fieldset>
+                    <label for="key">Key</label>
+                    <input id="key" type="text" class="form-control" required>
+                  </fieldset>
                 </div>
                 <button type="submit" id="go" class="btn btn-primary">Get film times</button>
               </form>
