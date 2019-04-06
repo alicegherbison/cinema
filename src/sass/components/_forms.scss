@@ -1,0 +1,11 @@
+.form-row {
+  display: flex;
+}
+
+.form-column {
+  width: 50%;
+
+  &:first-child {
+    margin-right: $spacer / 2;
+  }
+}

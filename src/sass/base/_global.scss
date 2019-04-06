@@ -27,8 +27,10 @@ input,
 select {
   border: .2rem solid $form-element-border-color;
   border-radius: $border-radius;
+  color: $form-element-color;
   font-family: $form-element-font-family;
   font-size: $font-size-base;
+  padding: $form-element-padding;
 }
 
 button {
@@ -36,7 +38,6 @@ button {
   color: $btn-color;
   cursor: pointer;
   font-weight: bold;
-  padding: .8rem 1.4rem;
 
   &:focus {
     box-shadow: 0 0 0 $border-width $color-cyan;
@@ -52,6 +53,11 @@ select {
     border-color: $color-cyan;
     box-shadow: 0 0 0 $border-width / 4 $color-cyan;
   }
+}
+
+label {
+  display: block;
+  margin-bottom: $form-element-margin-bottom;
 }
 
 .wrapper {

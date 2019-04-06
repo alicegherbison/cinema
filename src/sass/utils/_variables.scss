@@ -59,9 +59,12 @@ $border-radius: .4rem;
 $link-color: $color-cyan;
 
 // forms
-$form-element-border-color: $color-lime;
 $form-element-bg-color: $color-grey-dark;
+$form-element-border-color: $color-lime;
+$form-element-color: $color-straw;
 $form-element-font-family: $font-primary;
+$form-element-margin-bottom: $spacer / 2;
+$form-element-padding: .8rem 1.4rem;
 
 $btn-bg-color: $color-lime;
 $btn-color: $color-grey-dark;
