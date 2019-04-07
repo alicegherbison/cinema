@@ -34,12 +34,13 @@ $body-color: $color-straw;
 // typography
 $font-primary: 'Curtive Mono', monospace;
 $font-size-base: 1.6rem;
-$line-height-base: 1.5;
+$line-height-base: 1;
 
 $headings-font-weight: bold;
 $headings-margin-bottom: $spacer / 2;
 $headings-line-height: 1.2;
 
+$paragraph-line-height: 1.2;
 $paragraph-margin-bottom: $spacer;
 
 $hr-margin-bottom: $spacer;
@@ -64,8 +65,8 @@ $form-element-border-color: $color-lime;
 $form-element-color: $color-straw;
 $form-element-font-family: $font-primary;
 $form-element-height: 4rem;
-$form-element-margin-bottom: $spacer / 2;
 $form-element-padding: .8rem 1.4rem;
+$form-element-spacer: $spacer / 2;
 
 $btn-bg-color: $color-lime;
 $btn-color: $color-grey-dark;

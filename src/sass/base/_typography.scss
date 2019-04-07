@@ -17,7 +17,6 @@ h4,
 h5,
 h6 {
   font-weight: $headings-font-weight;
-  line-height: $headings-line-height;
   margin-bottom: $headings-margin-bottom;
 }
 
@@ -34,6 +33,7 @@ h5 { font-size: $h5-font-size; }
 h6 { font-size: $h6-font-size; }
 
 p {
+  line-height: $paragraph-line-height;
   margin-bottom: $paragraph-margin-bottom;
   margin-top: 0;
 }
