@@ -3,9 +3,12 @@
 }
 
 .form-column {
-  width: 50%;
 
   &:first-child {
     margin-right: $spacer / 2;
+  }
+
+  &:last-child {
+    flex-grow: 2;
   }
 }
