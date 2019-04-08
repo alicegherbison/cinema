@@ -1,0 +1,37 @@
+button,
+input,
+select {
+  border: .2rem solid $form-element-border-color;
+  border-radius: $border-radius;
+  color: $form-element-color;
+  font-family: $form-element-font-family;
+  font-size: $font-size-base;
+  padding: $form-element-padding;
+}
+
+input,
+select {
+  background-color: $form-element-bg-color;
+  width: 100%;
+
+  &:focus {
+    border-color: $color-cyan;
+    box-shadow: 0 0 0 $border-width / 4 $color-cyan;
+  }
+}
+
+button {
+  background-color: $btn-bg-color;
+  color: $btn-color;
+  cursor: pointer;
+  font-weight: bold;
+
+  &:focus {
+    box-shadow: 0 0 0 $border-width $color-cyan;
+  }
+}
+
+label {
+  display: block;
+  margin-bottom: $form-element-spacer;
+}
