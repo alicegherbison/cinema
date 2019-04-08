@@ -19,8 +19,8 @@ function browser(done) {
     server: {
       baseDir: 'dist',
     },
-    port: 9999
-  })
+    port: 9999,
+  });
   done();
 }
 
@@ -38,7 +38,7 @@ function css(done) {
   .pipe(autoprefixer())
   .pipe(csso())
   .pipe(rename('build.min.css'))
-  .pipe(gulp.dest('dist/css'))
+  .pipe(gulp.dest('dist/css'));
   done();
 }
 
@@ -52,7 +52,7 @@ function js(done) {
   .pipe(uglify())
   .pipe(gulp.dest('dist/js'));
   done();
-};
+}
 
 function html(done) {
   gulp.src('src/*.html')
@@ -70,9 +70,9 @@ function watch(done) {
 
 function push(done) {
   gulp.src('dist/**/*')
-  .pipe(ghPages())
+  .pipe(ghPages());
   done();
-};
+}
 
 const build = gulp.series(clean, gulp.parallel(css, js, html));
 const serve = gulp.series(build, browser, watch);
