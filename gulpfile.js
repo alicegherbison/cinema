@@ -3,6 +3,7 @@ const browserSync = require('browser-sync').create();
 const del = require('del');
 const rename = require('gulp-rename');
 const concat = require('gulp-concat');
+const autoprefixer = require('gulp-autoprefixer');
 const sassLint = require('gulp-sass-lint');
 const sass = require('gulp-sass');
 const csso = require('gulp-csso');
@@ -34,6 +35,7 @@ function css(done) {
   .pipe(sassLint())
   .pipe(sassLint.format())
   .pipe(sass())
+  .pipe(autoprefixer())
   .pipe(csso())
   .pipe(rename('build.min.css'))
   .pipe(gulp.dest('dist/css'))
