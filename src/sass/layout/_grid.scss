@@ -1,0 +1,5 @@
+.wrapper {
+  @include wrapper-max-widths;
+  margin: 0 auto;
+  padding: 0 3.2rem;
+}

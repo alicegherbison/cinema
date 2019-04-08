@@ -25,51 +25,51 @@ function getFilms(e) {
   headers.set('Authorization', `Bearer ${key}`);
 
   fetch(`https://api.list.co.uk/v1/events?place_id=${cinema}&tags=film`, { headers })
-  .then(response => response.json())
-  .then((data) => {
-    const results = document.querySelector('#results');
-    results.innerHTML = '';
+    .then(response => response.json())
+    .then((data) => {
+      const results = document.querySelector('#results');
+      results.innerHTML = '';
 
-    data.forEach((film) => {
-      let prevDate;
-      let dayRow;
-      let timesCell = document.createElement('td');
-      const showtimesTable = document.createElement('table');
-      const showtimesData = film.schedules[0].performances;
+      data.forEach((film) => {
+        let prevDate;
+        let dayRow;
+        let timesCell = document.createElement('td');
+        const showtimesTable = document.createElement('table');
+        const showtimesData = film.schedules[0].performances;
 
-      showtimesData.filter(ignoreSubtitled).forEach((showing) => {
-        const timestamp = new Date(showing.ts);
-        const showingWeekday = days[timestamp.getDay()];
-        const showingDay = addZero(timestamp.getDate());
-        const showingMonth = months[timestamp.getMonth()];
-        const showingYear = timestamp.getFullYear();
-        const showingHour = addZero(timestamp.getHours());
-        const showingMinutes = addZero(timestamp.getMinutes());
-        const showingDate = showingDay + showingMonth + showingYear;
-        const dateCell = document.createElement('th');
-        const timeText = document.createElement('span');
+        showtimesData.filter(ignoreSubtitled).forEach((showing) => {
+          const timestamp = new Date(showing.ts);
+          const showingWeekday = days[timestamp.getDay()];
+          const showingDay = addZero(timestamp.getDate());
+          const showingMonth = months[timestamp.getMonth()];
+          const showingYear = timestamp.getFullYear();
+          const showingHour = addZero(timestamp.getHours());
+          const showingMinutes = addZero(timestamp.getMinutes());
+          const showingDate = showingDay + showingMonth + showingYear;
+          const dateCell = document.createElement('th');
+          const timeText = document.createElement('span');
 
-        timeText.classList.add('time');
+          timeText.classList.add('time');
 
-        dateCell.innerHTML = `${showingWeekday}&nbsp;${showingDay}&nbsp;${showingMonth}`;
-        timeText.innerHTML = `${showingHour}:${showingMinutes}`;
+          dateCell.innerHTML = `${showingWeekday}&nbsp;${showingDay}&nbsp;${showingMonth}`;
+          timeText.innerHTML = `${showingHour}:${showingMinutes}`;
 
-        if (prevDate === showingDate) {
-          timesCell.appendChild(timeText);
-        } else {
-          dayRow = document.createElement('tr');
-          timesCell = document.createElement('td');
+          if (prevDate === showingDate) {
+            timesCell.appendChild(timeText);
+          } else {
+            dayRow = document.createElement('tr');
+            timesCell = document.createElement('td');
 
-          dayRow.appendChild(dateCell);
-          dayRow.appendChild(timesCell);
-          timesCell.appendChild(timeText);
-          showtimesTable.appendChild(dayRow);
-        }
+            dayRow.appendChild(dateCell);
+            dayRow.appendChild(timesCell);
+            timesCell.appendChild(timeText);
+            showtimesTable.appendChild(dayRow);
+          }
 
-        prevDate = showingDate;
-      });
+          prevDate = showingDate;
+        });
 
-      const filmCard = /* html */`
+        const filmCard = /* html */`
       <div class="film card mb-2" data-id="${film.event_id}">
       <div class="card-body">
       <h2>${film.name}</h2>
@@ -83,12 +83,12 @@ function getFilms(e) {
       </div>
       </div>
       `;
-      results.innerHTML += filmCard;
-    });
-    results.innerHTML += /* html */`
+        results.innerHTML += filmCard;
+      });
+      results.innerHTML += /* html */`
     <div class="text-center mt-4"><a href="javascript:window.print()" class="btn btn-primary print">print</a></div>
     `;
-  });
+    });
 }
 
 function prepareForPrint() {

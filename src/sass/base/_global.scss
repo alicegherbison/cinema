@@ -21,15 +21,3 @@ a {
     color: $link-color;
   }
 }
-
-header {
-  border: .2rem solid $color-lilac;
-  border-radius: $border-radius;
-  padding: 1.6rem;
-}
-
-.wrapper {
-  @include wrapper-max-widths;
-  margin: 0 auto;
-  padding: 0 3.2rem;
-}
