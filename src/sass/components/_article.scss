@@ -1,0 +1,30 @@
+article {
+  border: .2rem solid;
+  border-radius: $border-radius;
+  margin-bottom: $spacer / 2;
+  padding: $spacer;
+
+  &:nth-child(2n+1) {
+    border-color: $color-magenta;
+  }
+
+  &:nth-child(2n+2) {
+    border-color: $color-peach;
+  }
+
+  &:nth-child(2n+3) {
+    border-color: $color-lemon;
+  }
+
+  &:nth-child(2n+4) {
+    border-color: $color-lime;
+  }
+
+  &:nth-child(2n+5) {
+    border-color: $color-cyan;
+  }
+
+  &:nth-child(2n+6) {
+    border-color: $color-lilac;
+  }
+}
