@@ -4,27 +4,27 @@ article {
   margin-bottom: $spacer / 2;
   padding: $spacer;
 
-  &:nth-child(2n+1) {
+  &:nth-child(2n+0) {
     border-color: $color-magenta;
   }
 
-  &:nth-child(2n+2) {
+  &:nth-child(3n+1) {
     border-color: $color-peach;
   }
 
-  &:nth-child(2n+3) {
+  &:nth-child(4n+1) {
     border-color: $color-lemon;
   }
 
-  &:nth-child(2n+4) {
+  &:nth-child(5n+1) {
     border-color: $color-lime;
   }
 
-  &:nth-child(2n+5) {
+  &:nth-child(6n+1) {
     border-color: $color-cyan;
   }
 
-  &:nth-child(2n+6) {
+  &:nth-child(7n+1) {
     border-color: $color-lilac;
   }
 }
