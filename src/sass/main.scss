@@ -15,13 +15,9 @@
 @import 'layout/footer';
 @import 'layout/forms';
 
-@import 'components/article';
+@import 'components/film-card';
 
 @media screen {
-
-  table {
-    margin-top: 20px;
-  }
 
   th,
   td {
