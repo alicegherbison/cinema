@@ -1,0 +1,9 @@
+@mixin form-element-global-style {
+  background-color: $form-element-bg-color;
+  border: .2rem solid $form-element-border-color;
+  border-radius: $border-radius;
+  color: $form-element-color;
+  font-family: $form-element-font-family;
+  font-size: $font-size-base;
+  padding: $form-element-padding;
+}

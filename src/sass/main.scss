@@ -1,9 +1,9 @@
 @charset 'UTF-8';
-// @import '../../node_modules/bootstrap/scss/bootstrap';
 
 @import 'utils/variables';
 
 @import 'mixins/breakpoints';
+@import 'mixins/forms';
 
 @import 'base/reset';
 @import 'base/global';
