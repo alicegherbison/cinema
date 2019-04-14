@@ -70,11 +70,11 @@ function getFilms(e) {
         });
 
         const filmCard = /* html */`
-      <article data-id="${film.event_id}" class="film-card">
-      <header>
+      <article data-id="${film.event_id}" class="film">
+      <div class="film__body">
       <h2>${film.name}</h2>
-      </header>
       ${showtimesTable.outerHTML}
+      </div>
       <footer>
       <div class="form-check">
       <input type="checkbox" class="check-print form-check-input" id="${film.event_id}" data-id="${film.event_id}" />

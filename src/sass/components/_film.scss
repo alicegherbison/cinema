@@ -1,8 +1,7 @@
-.film-card {
+.film {
   border: .2rem solid;
   border-radius: $border-radius;
   margin-bottom: $spacer / 2;
-  padding: $spacer;
 
   &:nth-child(6n+1) {
     border-color: $color-magenta;
@@ -26,5 +25,13 @@
 
   &:nth-child(6n+6) {
     border-color: $color-lilac;
+  }
+
+  &__body {
+    padding: $spacer;
+  }
+
+  &__footer {
+    padding: $spacer;
   }
 }
