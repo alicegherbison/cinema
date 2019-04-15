@@ -13,8 +13,32 @@ input {
   width: 100%;
 
   &[type='checkbox'] {
-    display: inline-block;
-    width: unset;
+    // display: inline-block;
+    // width: unset;
+
+    cursor: pointer;
+    font-size: 17px;
+    height: 2rem;
+    transform: scale(1.5);
+    width: 2rem;
+    //visibility: hidden;
+
+    &::after {
+      @include form-element-global-style;
+      content: '';
+      display: inline-block;
+      height: 2rem;
+      padding: 0;
+      visibility: visible;
+      width: 2rem;
+    }
+
+    &:checked {
+      &::after {
+        content: '\2714';
+        font-weight: bold;
+      }
+    }
 
     &+ label {
       display: inline-block;
