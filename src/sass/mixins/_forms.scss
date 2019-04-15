@@ -6,4 +6,9 @@
   font-family: $form-element-font-family;
   font-size: $font-size-base;
   padding: $form-element-padding;
+
+  &:focus {
+    border-color: $color-cyan;
+    box-shadow: 0 0 0 $border-width $color-cyan;
+  }
 }

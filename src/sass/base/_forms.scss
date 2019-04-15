@@ -5,31 +5,20 @@ button {
   color: $btn-color;
   cursor: pointer;
   font-weight: bold;
-
-  &:focus {
-    box-shadow: 0 0 0 $border-width $color-cyan;
-  }
 }
 
 input {
   @include form-element-global-style;
 
-  &[type='checkbox'] {
-    display: inline;
-  }
-}
-
-select {
-  @include form-element-global-style;
-}
-
-input,
-select {
   width: 100%;
 
-  &:focus {
-    border-color: $color-cyan;
-    box-shadow: 0 0 0 $border-width / 4 $color-cyan;
+  &[type='checkbox'] {
+    display: inline;
+
+    &+ label {
+      display: inline;
+      margin: 0;
+    }
   }
 }
 
@@ -38,7 +27,8 @@ label {
   margin-bottom: $form-element-spacer;
 }
 
-input[type='checkbox'] + label {
-  display: inline;
-  margin: 0;
+select {
+  @include form-element-global-style;
+
+  width: 100%;
 }
