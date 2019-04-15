@@ -13,10 +13,11 @@ input {
   width: 100%;
 
   &[type='checkbox'] {
-    display: inline;
+    display: inline-block;
+    width: unset;
 
     &+ label {
-      display: inline;
+      display: inline-block;
       margin: 0;
     }
   }
