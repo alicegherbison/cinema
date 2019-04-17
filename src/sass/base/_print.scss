@@ -1,0 +1,16 @@
+@media print {
+
+  body {
+    color: $color-black;
+    font-size: 8pt;
+  }
+
+  .site-header,
+  .site-footer,
+  .print,
+  .film__footer,
+  .no-print {
+    display: none;
+  }
+
+}
