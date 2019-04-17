@@ -76,8 +76,8 @@ function getFilms(e) {
       ${showtimesTable.outerHTML}
       </div>
       <footer class="film__footer">
-      <input type="checkbox" class="check-print form-check-input" id="${film.event_id}" data-id="${film.event_id}" />
-      <label class="form-check-label" for="${film.event_id}">print</label>
+      <input type="checkbox" id="${film.event_id}" data-id="${film.event_id}" />
+      <label for="${film.event_id}">print</label>
       </footer>
       </article>
       `;
