@@ -35,8 +35,9 @@ $body-color: $color-straw;
 $font-primary: 'Curtive Mono', monospace;
 $font-size-base: 1.6rem;
 $line-height-base: 1;
+$font-weight-bold: bold;
 
-$headings-font-weight: bold;
+$headings-font-weight: $font-weight-bold;
 $headings-margin-bottom: $spacer;
 $headings-line-height: 1.2;
 
@@ -70,3 +71,6 @@ $form-element-spacer: $spacer / 2;
 
 $btn-bg-color: $color-lime;
 $btn-color: $color-grey-dark;
+
+// tables
+$table-border-color: $color-grey-mid;

@@ -7,8 +7,9 @@
 
 @import 'base/reset';
 @import 'base/global';
-@import 'base/typography';
 @import 'base/forms';
+@import 'base/typography';
+@import 'base/tables';
 
 @import 'layout/grid';
 @import 'layout/header';
@@ -16,33 +17,6 @@
 @import 'layout/forms';
 
 @import 'components/film';
-
-@media screen {
-
-  th,
-  td {
-    vertical-align: top;
-  }
-
-  th {
-    padding: 10px 0;
-  }
-
-  tr {
-    &:not(:last-of-type) {
-      border-bottom: 1px solid $color-grey;
-    }
-  }
-
-  td {
-    padding: 5px 0 5px 10px;
-  }
-
-  .time {
-    display: inline-block;
-    padding: 5px 10px;
-  }
-}
 
 @media print {
   body {

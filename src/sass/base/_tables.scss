@@ -1,0 +1,13 @@
+th {
+  padding: 10px 0;
+}
+
+tr {
+  &:not(:last-of-type) {
+    border-bottom: $border-width solid $table-border-color;
+  }
+}
+
+td {
+  padding: 5px 0 5px 10px;
+}

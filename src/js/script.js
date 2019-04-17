@@ -49,7 +49,7 @@ function getFilms(e) {
           const dateCell = document.createElement('th');
           const timeText = document.createElement('span');
 
-          timeText.classList.add('time');
+          timeText.classList.add('film__time');
 
           dateCell.innerHTML = `${showingWeekday}&nbsp;${showingDay}&nbsp;${showingMonth}`;
           timeText.innerHTML = `${showingHour}:${showingMinutes}`;
