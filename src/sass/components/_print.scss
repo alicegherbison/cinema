@@ -1,0 +1,15 @@
+.print {
+  margin-bottom: $spacer * 2;
+  text-align: center;
+
+  &__button {
+    @include form-element-global-style;
+
+    background-color: $btn-bg-color;
+    color: $btn-color;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: bold;
+    text-decoration: none;
+  }
+}

@@ -76,7 +76,7 @@ function getFilms(e) {
       ${showtimesTable.outerHTML}
       </div>
       <footer class="film__footer">
-      <input type="checkbox" id="${film.event_id}" data-id="${film.event_id}" />
+      <input type="checkbox" class="check-print" id="${film.event_id}" data-id="${film.event_id}" />
       <label for="${film.event_id}">print</label>
       </footer>
       </article>
@@ -84,7 +84,7 @@ function getFilms(e) {
         results.innerHTML += filmCard;
       });
       results.innerHTML += /* html */`
-    <div class="text-center mt-4"><a href="javascript:window.print()" class="btn btn-primary print">print</a></div>
+    <div class="print"><a href="javascript:window.print()" class="print__button">print</a></div>
     `;
     });
 }
