@@ -33,7 +33,7 @@
 
   &__time {
     display: inline-block;
-    padding: .5rem 1rem;
+    padding: .5rem 0 .5rem 2rem;
   }
 
   &__footer {
@@ -43,25 +43,3 @@
     padding: $spacer;
   }
 }
-
-// display: inline-block;
-
-// &:first-of-type {
-  //   padding-right: 1rem;
-  // }
-
-  // &:last-of-type {
-    //   padding-left: 1rem;
-    // }
-
-    // &:only-of-type {
-      //   padding: 0;
-      // }
-
-      // &:not(:first-of-type) {
-        //   &:not(:last-of-type) {
-          //     color: pink;
-          //     padding-left: 1rem;
-          //     padding-right: 1rem;
-          //   }
-          // }
