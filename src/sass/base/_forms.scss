@@ -13,14 +13,10 @@ input {
   width: 100%;
 
   &[type='checkbox'] {
-    // display: inline-block;
-    // width: unset;
-
     cursor: pointer;
     height: 2rem;
     margin: 0;
     width: 2rem;
-    //visibility: hidden;
 
     &::after {
       background-color: $form-element-bg-color;
