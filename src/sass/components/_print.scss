@@ -1,4 +1,9 @@
 .print {
+
+  @include print {
+    display: none;
+  }
+
   margin-bottom: $spacer * 2;
   text-align: center;
 

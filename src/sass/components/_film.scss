@@ -41,6 +41,11 @@
   }
 
   &__footer {
+
+    @include print {
+      display: none;
+    }
+
     align-items: center;
     border-top: inherit;
     display: flex;

@@ -1,4 +1,10 @@
 body {
+
+  @include print {
+    color: $color-black;
+    font-size: 8pt;
+  }
+
   background-color: $body-bg;
   color: $body-color;
 }
@@ -20,4 +26,12 @@ a {
   &:visited {
     color: $link-color;
   }
+}
+
+.no-print {
+
+  @include print {
+    display: none;
+  }
+
 }
