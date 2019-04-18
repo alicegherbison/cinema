@@ -38,7 +38,7 @@ input {
 
     &:checked {
       &::after {
-        content: '\2714';
+        content: $unicode-tick;
         font-weight: bold;
       }
     }
