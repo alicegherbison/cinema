@@ -1,0 +1,7 @@
+.results {
+
+  @include print {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}

@@ -1,4 +1,11 @@
 .film {
+
+  @include print {
+    flex-grow: 1;
+    margin-bottom: 20pt;
+    margin-right: 20pt;
+  }
+
   border: .2rem solid;
   border-radius: $border-radius;
   margin-bottom: $spacer / 2;
@@ -36,6 +43,11 @@
   }
 
   &__time {
+
+    @include print {
+      padding: 0 5pt;
+    }
+
     display: inline-block;
     padding: .5rem 0 .5rem 2rem;
   }
