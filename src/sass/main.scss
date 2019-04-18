@@ -20,38 +20,3 @@
 @import 'components/film';
 @import 'components/print';
 @import 'components/results';
-
-// @media print {
-//   body {
-//     font-family: 'Curtive Mono', monospace;
-//     font-size: 8pt;
-//   }
-
-//   header,
-//   footer,
-//   .print,
-//   .card-footer,
-//   .no-print {
-//     display: none;
-//   }
-
-//   h2 {
-//     font-size: 12pt;
-//     margin: 0;
-//   }
-
-//   .results {
-//     display: flex;
-//     flex-wrap: wrap;
-//   }
-
-//   .film {
-//     flex-grow: 1;
-//     margin-bottom: 20pt;
-//     margin-right: 20pt;
-//   }
-
-//   .time {
-//     padding: 0 5pt;
-//   }
-// }

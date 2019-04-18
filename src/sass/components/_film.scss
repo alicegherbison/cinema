@@ -1,9 +1,10 @@
 .film {
 
   @include print {
+    border: .1rem solid;
     flex-grow: 1;
-    margin-bottom: 20pt;
-    margin-right: 20pt;
+    // margin-bottom: 10pt;
+    // margin-right: 10pt;
   }
 
   border: .2rem solid;
@@ -11,26 +12,56 @@
   margin-bottom: $spacer / 2;
 
   &:nth-child(6n+1) {
+
+    @include print {
+      border-color: $color-grey-light;
+    }
+
     border-color: $color-magenta;
   }
 
   &:nth-child(6n+2) {
+
+    @include print {
+      border-color: $color-grey-light;
+    }
+
     border-color: $color-peach;
   }
 
   &:nth-child(6n+3) {
+
+    @include print {
+      border-color: $color-grey-light;
+    }
+
     border-color: $color-lemon;
   }
 
   &:nth-child(6n+4) {
+
+    @include print {
+      border-color: $color-grey-light;
+    }
+
     border-color: $color-lime;
   }
 
   &:nth-child(6n+5) {
+
+    @include print {
+      border-color: $color-grey-light;
+    }
+
     border-color: $color-cyan;
   }
 
   &:nth-child(6n+6) {
+
+    @include print {
+      border-color: $color-grey-light;
+    }
+
     border-color: $color-lilac;
   }
 

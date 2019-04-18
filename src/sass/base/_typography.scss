@@ -4,6 +4,12 @@ html {
 }
 
 body {
+
+  @include print {
+    color: $color-black;
+    font-size: 8pt;
+  }
+
   font-family: $font-primary;
   font-size: $font-size-base;
   line-height: $line-height-base;
