@@ -76,6 +76,11 @@
     padding: $spacer;
   }
 
+  &__runtime {
+    font-size: 1rem;
+    font-weight: normal;
+  }
+
   &__time {
 
     @include print {

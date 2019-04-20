@@ -31,6 +31,7 @@ function getFilms(e) {
       results.innerHTML = '';
 
       data.forEach((film) => {
+        console.log(film);
         let prevDate;
         let dayRow;
         let timesCell = document.createElement('td');
@@ -73,6 +74,7 @@ function getFilms(e) {
       <article data-id="${film.event_id}" class="film">
       <div class="film__body">
       <h2>${film.name}</h2>
+      <p class="film__runtime">125 mins</p>
       ${showtimesTable.outerHTML}
       </div>
       <footer class="film__footer">
