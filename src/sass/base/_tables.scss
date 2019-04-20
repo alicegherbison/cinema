@@ -1,7 +1,14 @@
+table {
+  @include print {
+    font-size: 6pt;
+    page-break-inside: avoid;
+  }
+}
+
 th {
 
   @include print {
-    padding: 0;
+    padding: $spacer-print 0;
   }
 
   font-weight: $font-weight-bold;
@@ -22,7 +29,7 @@ tr {
 td {
 
   @include print {
-    padding: 0;
+    padding: $spacer-print / 2 0;
   }
 
   padding: .5rem 0;

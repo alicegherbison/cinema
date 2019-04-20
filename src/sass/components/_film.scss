@@ -1,10 +1,9 @@
 .film {
 
   @include print {
-    border: .1rem solid;
+    border: 1pt solid;
     flex-grow: 1;
-    // margin-bottom: 10pt;
-    // margin-right: 10pt;
+    margin: $spacer-print;
   }
 
   border: .2rem solid;
@@ -70,13 +69,17 @@
   }
 
   &__body {
+    @include print {
+      padding: $spacer-print * 2;
+    }
+
     padding: $spacer;
   }
 
   &__time {
 
     @include print {
-      padding: 0 5pt;
+      padding: $spacer-print / 2 0 $spacer-print / 2 $spacer-print * 2;
     }
 
     display: inline-block;
