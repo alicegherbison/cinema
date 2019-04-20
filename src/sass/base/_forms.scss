@@ -10,6 +10,7 @@ button {
 input {
   @include form-element-global-style;
 
+  background-color: $form-element-bg-color;
   width: 100%;
 
   &[type='checkbox'] {
@@ -58,5 +59,10 @@ label {
 select {
   @include form-element-global-style;
 
+  background-color: transparent;
   width: 100%;
+}
+
+option {
+  color: $color-grey-dark;
 }
