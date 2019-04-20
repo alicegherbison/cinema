@@ -14,11 +14,11 @@ Requires a **registered API key** from [The List](https://api.thelist.co.uk) and
 Results **exclude** any subtitled films, but include 3D, 4D and Cinebabies.
 
 ## Upcoming features
-* print stylings
-* non-Bootstrapped layout (Bootstrap used initially for speed)
+* move to Netlify
+* use an environment variable for API key
 
 ## Personal learnings
 * accessing JSON object properties
 * how to add headers to the API call
 * appropriate date formatting
-* constructing HTML elements in JavaScript 
+* constructing HTML elements in JavaScript
