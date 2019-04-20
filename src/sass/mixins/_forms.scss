@@ -5,6 +5,8 @@
   color: $form-element-color;
   font-family: $form-element-font-family;
   font-size: $font-size-base;
+  height: $form-element-height;
+  line-height: $form-element-line-height;
   padding: $form-element-padding;
 
   &:focus {
