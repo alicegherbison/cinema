@@ -69,14 +69,14 @@ function watch(done) {
 }
 
 function push(done) {
-  gulp.src('dist/**/*')
+  gulp.src('./dist/**/*')
   .pipe(ghPages());
   done();
 }
 
 const build = gulp.series(clean, gulp.parallel(css, js, html));
 const serve = gulp.series(build, browser, watch);
-const deploy = gulp.series(build, push);
+const deploy = gulp.series(push);
 
 exports.serve = serve;
 exports.build = build;
