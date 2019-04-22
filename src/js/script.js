@@ -16,6 +16,15 @@ function ignoreSubtitled(showing) {
   return false;
 }
 
+function showRunTime(film) {
+  if (Object.prototype.hasOwnProperty.call(film.properties['film.running-time'])) {
+    return /* html */`
+    <p class="film__runtime">I have a runtime</p>
+    `;
+  }
+  return;
+}
+
 function getFilms(e) {
   const key = document.querySelector('#key').value;
   const cinema = document.querySelector('#cinema').value;
@@ -70,11 +79,13 @@ function getFilms(e) {
           prevDate = showingDate;
         });
 
+        const runTime = showRunTime(film);
+
         const filmCard = /* html */`
       <article data-id="${film.event_id}" class="film">
       <div class="film__body">
       <h2>${film.name}</h2>
-      <p class="film__runtime">125 mins</p>
+      ${runTime}
       ${showtimesTable.outerHTML}
       </div>
       <footer class="film__footer">
