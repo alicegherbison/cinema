@@ -16,13 +16,13 @@ function ignoreSubtitled(showing) {
   return false;
 }
 
-function showRunTime(film) {
-  if (Object.prototype.hasOwnProperty.call(film.properties['film.running-time'])) {
+function hasRunTime(film) {
+  if (Object.prototype.hasOwnProperty.call(film.properties, 'film.running-time')) {
     return /* html */`
-    <p class="film__runtime">I have a runtime</p>
+    <p>${film.properties['film.running-time']} mins</p>
     `;
   }
-  return;
+  return '';
 }
 
 function getFilms(e) {
@@ -40,7 +40,6 @@ function getFilms(e) {
       results.innerHTML = '';
 
       data.forEach((film) => {
-        console.log(film);
         let prevDate;
         let dayRow;
         let timesCell = document.createElement('td');
@@ -79,13 +78,11 @@ function getFilms(e) {
           prevDate = showingDate;
         });
 
-        const runTime = showRunTime(film);
-
         const filmCard = /* html */`
       <article data-id="${film.event_id}" class="film">
       <div class="film__body">
       <h2>${film.name}</h2>
-      ${runTime}
+      ${hasRunTime(film)}
       ${showtimesTable.outerHTML}
       </div>
       <footer class="film__footer">
