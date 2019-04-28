@@ -15,7 +15,15 @@ const htmlmin = require('gulp-htmlmin');
 const ghPages = require('gulp-gh-pages');
 
 function browser(done) {
+  const apiKey = process.env.LIST_API || 'API key unavailable';
+
   browserSync.init({
+    middleware: [
+      (req, res, next) => {
+        res.setHeader('Authorization', `Bearer ${apiKey}`);
+        next();
+      },
+    ],
     server: {
       baseDir: 'dist',
     },

@@ -26,14 +26,14 @@ function hasRunTime(film) {
 }
 
 function getFilms(e) {
-  const key = document.querySelector('#key').value;
+  // const key = document.querySelector('#key').value;
   const cinema = document.querySelector('#cinema').value;
-  const headers = new Headers();
+  // const headers = new Headers();
 
   e.preventDefault();
-  headers.set('Authorization', `Bearer ${key}`);
+  // headers.set('Authorization', `Bearer ${key}`);
 
-  fetch(`https://api.list.co.uk/v1/events?place_id=${cinema}&tags=film`, { headers })
+  fetch(`https://api.list.co.uk/v1/events?place_id=${cinema}&tags=film`)
     .then(response => response.json())
     .then((data) => {
       const results = document.querySelector('#results');
