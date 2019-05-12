@@ -2,6 +2,7 @@ const gulp = require('gulp');
 const browserSync = require('browser-sync').create();
 const del = require('del');
 const rename = require('gulp-rename');
+const template = require('gulp-template');
 const concat = require('gulp-concat');
 const autoprefixer = require('gulp-autoprefixer');
 const sassLint = require('gulp-sass-lint');
@@ -14,16 +15,24 @@ const uglify = require('gulp-uglify');
 const htmlmin = require('gulp-htmlmin');
 const ghPages = require('gulp-gh-pages');
 
-function browser(done) {
-  const apiKey = process.env.LIST_API || 'API key unavailable';
+const apiKey = process.env.LIST_API || 'API key unavailable';
 
+function createConfig(done) {
+  gulp.src('config/config.tmpl.js')
+  .pipe(template({
+    apiKey: JSON.stringify(apiKey),
+  }))
+  .pipe(rename('config.js'))
+  .pipe(gulp.dest('src/js'));
+
+  console.log(`API key: ${apiKey}`);
+  done();
+}
+
+
+function browser(done) {
   browserSync.init({
-    middleware: [
-      (req, res, next) => {
-        res.setHeader('Authorization', `Bearer ${apiKey}`);
-        next();
-      },
-    ],
+    logLevel: 'debug',
     server: {
       baseDir: 'dist',
     },
@@ -51,8 +60,11 @@ function css(done) {
 }
 
 function js(done) {
-  gulp.src('src/js/*.js')
+  gulp.src(['config/config.tmpl.js', 'src/js/*.js'])
   .pipe(plumber())
+  .pipe(template({
+    apiKey: JSON.stringify(apiKey),
+  }))
   .pipe(eslint())
   .pipe(eslint.format())
   .pipe(babel({ presets: ['@babel/env'] }))
