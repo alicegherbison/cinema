@@ -60,11 +60,12 @@ function css(done) {
 }
 
 function js(done) {
-  gulp.src(['config/config.tmpl.js', 'src/js/*.js'])
+  gulp.src('config/config.tmpl.js')
   .pipe(plumber())
   .pipe(template({
     apiKey: JSON.stringify(apiKey),
   }))
+  .pipe(gulp.src('src/js/*.js', { passthrough: true }))
   .pipe(eslint())
   .pipe(eslint.format())
   .pipe(babel({ presets: ['@babel/env'] }))
@@ -72,6 +73,10 @@ function js(done) {
   .pipe(uglify())
   .pipe(gulp.dest('dist/js'));
   done();
+}
+
+function test(done) {
+
 }
 
 function html(done) {
