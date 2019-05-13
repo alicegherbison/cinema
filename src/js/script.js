@@ -33,7 +33,7 @@ function getFilms(e) {
   e.preventDefault();
   headers.set('Authorization', `Bearer ${apiKey}`); // eslint-disable-line
 
-  fetch(`https://api.list.co.uk/v1/events?place_id=${cinema}&tags=film`, headers)
+  fetch(`https://api.list.co.uk/v1/events?place_id=${cinema}&tags=film`, { headers })
     .then(response => response.json())
     .then((data) => {
       const results = document.querySelector('#results');
