@@ -17,19 +17,6 @@ const ghPages = require('gulp-gh-pages');
 
 const apiKey = process.env.LIST_API || 'API key unavailable';
 
-function createConfig(done) {
-  gulp.src('config/config.tmpl.js')
-  .pipe(template({
-    apiKey: JSON.stringify(apiKey),
-  }))
-  .pipe(rename('config.js'))
-  .pipe(gulp.dest('src/js'));
-
-  console.log(`API key: ${apiKey}`);
-  done();
-}
-
-
 function browser(done) {
   browserSync.init({
     logLevel: 'debug',
@@ -73,10 +60,6 @@ function js(done) {
   .pipe(uglify())
   .pipe(gulp.dest('dist/js'));
   done();
-}
-
-function test(done) {
-
 }
 
 function html(done) {
