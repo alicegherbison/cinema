@@ -82,7 +82,6 @@ function getFilms(e) {
       <article data-id="${film.event_id}" class="film">
       <div class="film__body">
       <h2>${film.name}</h2>
-      ${hasRunTime(film)}
       ${showtimesTable.outerHTML}
       </div>
       <footer class="film__footer">
