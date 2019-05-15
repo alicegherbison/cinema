@@ -26,15 +26,17 @@ function hasRunTime(film) {
 }
 
 function getFilms(e) {
-  // const key = document.querySelector('#key').value;
-  const cinema = document.querySelector('#cinema').value;
-  const headers = new Headers();
-
   e.preventDefault();
-  headers.set('Authorization', `Bearer ${apiKey}`); // eslint-disable-line
 
-  fetch(`https://api.list.co.uk/v1/events?place_id=${cinema}&tags=film`, { headers })
-    .then(response => response.json())
+  const cinema = document.querySelector('#cinema').value;
+
+  fetch(`https://api.list.co.uk/v1/events?place_id=${cinema}&tags=film`, {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${apiKey}`, // eslint-disable-line
+    },
+  })
+  .then(response => response.json())
     .then((data) => {
       const results = document.querySelector('#results');
       results.innerHTML = '';
