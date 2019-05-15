@@ -36,7 +36,12 @@ function getFilms(e) {
       Authorization: `Bearer ${apiKey}`, // eslint-disable-line
     },
   })
-  .then(response => response.json())
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+    return response.json();
+  })
     .then((data) => {
       const results = document.querySelector('#results');
       results.innerHTML = '';
@@ -97,6 +102,9 @@ function getFilms(e) {
       results.innerHTML += /* html */`
     <div class="print"><a href="javascript:window.print()" class="print__button">print</a></div>
     `;
+    })
+    .catch((error) => {
+      console.log(error.message);
     });
 }
 
