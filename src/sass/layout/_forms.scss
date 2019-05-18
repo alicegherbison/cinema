@@ -9,6 +9,10 @@
     margin-right: $form-element-spacer;
   }
 
+  &:only-child {
+    margin-right: 0;
+  }
+
   &:last-child {
     flex-grow: 2;
   }
