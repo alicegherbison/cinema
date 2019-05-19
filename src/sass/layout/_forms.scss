@@ -1,10 +1,10 @@
 .form-row {
   display: flex;
+
   margin-bottom: $form-element-spacer;
 }
 
 .form-column {
-
   &:first-child {
     margin-right: $form-element-spacer;
   }

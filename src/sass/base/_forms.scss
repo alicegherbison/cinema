@@ -59,8 +59,20 @@ label {
 select {
   @include form-element-global-style;
 
+  appearance: none;
+
+  position: relative;
+
   background-color: transparent;
   width: 100%;
+
+  &::after {
+    content: 'a';
+
+    display: block;
+
+    position: absolute;
+  }
 }
 
 option {
