@@ -1,12 +1,18 @@
 {
   "env": {
-     "es6": true,
-     "browser": true,
-     "node": true,
-     "jquery": true
+    "es6": true,
+    "browser": true,
+    "node": true,
+    "jquery": true
   },
-  "extends" : "airbnb",
+  "extends": "airbnb",
   "rules": {
-    "indent": ["error", 2, { "MemberExpression": "off"}]
-  }
+    "indent": ["error", 2, { "MemberExpression": "off" }]
+  },
+  "overrides": [
+    {
+      "files": ["./*.js", "./*.js"],
+      "excludedFiles": "./*.tmpl.js"
+    }
+  ]
 }
