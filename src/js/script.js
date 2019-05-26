@@ -105,7 +105,7 @@ function getFilms(e) {
         results.innerHTML += filmCard;
       });
       results.innerHTML += /* html */ `
-    <div class="print"><a href="javascript:window.print()" class="print__button">print</a></div>
+    <div class="print"><a class="print__button" onClick="window.print()">print</a></div>
     `;
     })
     .catch((error) => {
