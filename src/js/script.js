@@ -21,13 +21,25 @@ function ignoreSubtitled(showing) {
   return false;
 }
 
-function hasRunTime(film) {
+function displayRunTime(film) {
   if (
     film.properties
     && Object.prototype.hasOwnProperty.call(film.properties, 'film.running-time')
   ) {
     return /* html */ `
       <p>${film.properties['film.running-time']} mins</p>
+      `;
+  }
+  return '';
+}
+
+function displayCertificate(film) {
+  if (
+    film.properties
+    && Object.prototype.hasOwnProperty.call(film.properties, 'film.certificate.bbfc')
+  ) {
+    return /* html */ `
+      <span>(${film.properties['film.certificate.bbfc']})</p>
       `;
   }
   return '';
@@ -96,8 +108,8 @@ function getFilms(e) {
         const filmCard = /* html */ `
       <article data-id="${film.event_id}" class="film">
       <div class="film__body">
-      <h2>${film.name}</h2>
-      ${hasRunTime(film)}
+      <h2>${film.name}${displayCertificate(film)}</h2>
+      ${displayRunTime(film)}
       ${showtimesTable.outerHTML}
       </div>
       <footer class="film__footer">
