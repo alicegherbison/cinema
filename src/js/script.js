@@ -10,7 +10,12 @@ function addZero(x) {
 }
 
 function ignoreSubtitled(showing) {
-  if (!(Object.prototype.hasOwnProperty.call(showing, 'properties') && Object.prototype.hasOwnProperty.call(showing.properties, 'event.film.subtitled'))) {
+  if (
+    !(
+      Object.prototype.hasOwnProperty.call(showing, 'properties')
+      && Object.prototype.hasOwnProperty.call(showing.properties, 'event.film.subtitled')
+    )
+  ) {
     return true;
   }
   return false;
@@ -18,7 +23,7 @@ function ignoreSubtitled(showing) {
 
 function hasRunTime(film) {
   if (Object.prototype.hasOwnProperty.call(film.properties, 'film.running-time')) {
-    return /* html */`
+    return /* html */ `
     <p>${film.properties['film.running-time']} mins</p>
     `;
   }
@@ -36,12 +41,12 @@ function getFilms(e) {
       Authorization: `Bearer ${apiKey}`, // eslint-disable-line
     },
   })
-  .then((response) => {
-    if (!response.ok) {
-      throw new Error(response.statusText);
-    }
-    return response.json();
-  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(response.statusText);
+      }
+      return response.json();
+    })
     .then((data) => {
       const results = document.querySelector('#results');
       results.innerHTML = '';
@@ -85,7 +90,7 @@ function getFilms(e) {
           prevDate = showingDate;
         });
 
-        const filmCard = /* html */`
+        const filmCard = /* html */ `
       <article data-id="${film.event_id}" class="film">
       <div class="film__body">
       <h2>${film.name}</h2>
@@ -99,7 +104,7 @@ function getFilms(e) {
       `;
         results.innerHTML += filmCard;
       });
-      results.innerHTML += /* html */`
+      results.innerHTML += /* html */ `
     <div class="print"><a href="javascript:window.print()" class="print__button">print</a></div>
     `;
     })
@@ -144,6 +149,6 @@ if (window.matchMedia) {
   });
 }
 
-window.onbeforeprint = prepareForPrint;
+window.onbeforeprint = setTimeout(prepareForPrint, 1000);
 
 submit.addEventListener('click', getFilms);
