@@ -34,6 +34,7 @@ function getFilms(e) {
   e.preventDefault();
 
   const cinema = document.querySelector('#cinema').value;
+  const results = document.querySelector('#results');
 
   fetch(`https://api.list.co.uk/v1/events?place_id=${cinema}&tags=film`, {
     headers: {
@@ -48,7 +49,6 @@ function getFilms(e) {
       return response.json();
     })
     .then((data) => {
-      const results = document.querySelector('#results');
       results.innerHTML = '';
 
       data.forEach((film) => {
@@ -109,7 +109,14 @@ function getFilms(e) {
     `;
     })
     .catch((error) => {
-      console.log(error.message);
+      const errorMessage = /* html */ `
+      <div class="film">
+        <div class="film__body">
+          <p>We're sorry, we can't get your film times at the moment. Please try again later.</p>
+        </div>
+      </div>
+      `;
+      results.innerHTML += errorMessage;
     });
 }
 

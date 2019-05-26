@@ -4,7 +4,6 @@ html {
 }
 
 body {
-
   @include print {
     color: $color-black;
     font-size: 8pt;
@@ -32,7 +31,6 @@ h1 {
 }
 
 h2 {
-
   @include print {
     font-size: 9pt;
     margin-bottom: $spacer-print * 2;
@@ -40,15 +38,27 @@ h2 {
 
   font-size: $h2-font-size;
 }
-h3 { font-size: $h3-font-size; }
-h4 { font-size: $h4-font-size; }
-h5 { font-size: $h5-font-size; }
-h6 { font-size: $h6-font-size; }
+h3 {
+  font-size: $h3-font-size;
+}
+h4 {
+  font-size: $h4-font-size;
+}
+h5 {
+  font-size: $h5-font-size;
+}
+h6 {
+  font-size: $h6-font-size;
+}
 
 p {
   line-height: $paragraph-line-height;
   margin-bottom: $paragraph-margin-bottom;
   margin-top: 0;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
 hr {
