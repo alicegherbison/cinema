@@ -19,7 +19,6 @@ const apiKey = process.env.LIST_API || 'API key unavailable';
 
 function browser(done) {
   browserSync.init({
-    logLevel: 'debug',
     server: {
       baseDir: 'dist',
     },
@@ -81,15 +80,8 @@ function watch(done) {
   done();
 }
 
-function push(done) {
-  gulp.src('./dist/**/*').pipe(ghPages());
-  done();
-}
-
 const build = gulp.series(clean, gulp.parallel(css, js, html));
 const serve = gulp.series(build, browser, watch);
-const deploy = gulp.series(push);
 
 exports.serve = serve;
 exports.build = build;
-exports.deploy = deploy;
