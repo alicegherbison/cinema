@@ -22,10 +22,13 @@ function ignoreSubtitled(showing) {
 }
 
 function hasRunTime(film) {
-  if (Object.prototype.hasOwnProperty.call(film.properties, 'film.running-time')) {
+  if (
+    film.properties
+    && Object.prototype.hasOwnProperty.call(film.properties, 'film.running-time')
+  ) {
     return /* html */ `
-    <p>${film.properties['film.running-time']} mins</p>
-    `;
+      <p>${film.properties['film.running-time']} mins</p>
+      `;
   }
   return '';
 }
@@ -94,6 +97,7 @@ function getFilms(e) {
       <article data-id="${film.event_id}" class="film">
       <div class="film__body">
       <h2>${film.name}</h2>
+      ${hasRunTime(film)}
       ${showtimesTable.outerHTML}
       </div>
       <footer class="film__footer">
@@ -112,7 +116,9 @@ function getFilms(e) {
       const errorMessage = /* html */ `
       <div class="film">
         <div class="film__body">
-          <p>We're sorry, we can't get your film times at the moment. Please try again later.</p>
+          <p>We're sorry, we can't get your film times at the moment. Please try again later. ${
+  error.message
+}</p>
         </div>
       </div>
       `;
