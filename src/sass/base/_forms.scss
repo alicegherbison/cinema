@@ -24,7 +24,7 @@ input {
 
     &::after {
       background-color: $form-element-bg-color;
-      border: .2rem solid $form-element-color;
+      border: 0.2rem solid $form-element-color;
       border-radius: $border-radius;
       color: $form-element-color;
       content: '';
@@ -44,7 +44,7 @@ input {
       }
     }
 
-    &+ label {
+    & + label {
       display: inline-block;
       margin: 0 0 0 1rem;
     }
@@ -59,20 +59,8 @@ label {
 select {
   @include form-element-global-style;
 
-  appearance: none;
-
-  position: relative;
-
   background-color: transparent;
   width: 100%;
-
-  &::after {
-    content: 'a';
-
-    display: block;
-
-    position: absolute;
-  }
 }
 
 option {
