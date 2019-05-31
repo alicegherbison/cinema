@@ -24,7 +24,7 @@ input {
 
     &::after {
       background-color: $form-element-bg-color;
-      border: 0.2rem solid $form-element-color;
+      border: .2rem solid $form-element-color;
       border-radius: $border-radius;
       color: $form-element-color;
       content: '';

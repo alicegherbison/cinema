@@ -1,8 +1,4 @@
 body {
-  @include print {
-    background-color: pink;
-  }
-
   background-color: $body-bg;
   color: $body-color;
 }
