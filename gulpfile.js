@@ -1,19 +1,18 @@
-const gulp = require('gulp');
-const browserSync = require('browser-sync').create();
-const del = require('del');
-const rename = require('gulp-rename');
-const template = require('gulp-template');
-const concat = require('gulp-concat');
 const autoprefixer = require('gulp-autoprefixer');
-const sassLint = require('gulp-sass-lint');
-const sass = require('gulp-sass');
-const csso = require('gulp-csso');
-const plumber = require('gulp-plumber');
-const eslint = require('gulp-eslint');
 const babel = require('gulp-babel');
-const uglify = require('gulp-uglify');
+const browserSync = require('browser-sync').create();
+const concat = require('gulp-concat');
+const csso = require('gulp-csso');
+const del = require('del');
+const eslint = require('gulp-eslint');
+const gulp = require('gulp');
 const htmlmin = require('gulp-htmlmin');
-const ghPages = require('gulp-gh-pages');
+const plumber = require('gulp-plumber');
+const rename = require('gulp-rename');
+const sass = require('gulp-sass');
+const sassLint = require('gulp-sass-lint');
+const template = require('gulp-template');
+const uglify = require('gulp-uglify');
 
 const apiKey = process.env.LIST_API || 'API key unavailable';
 
