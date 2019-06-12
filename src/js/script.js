@@ -21,6 +21,30 @@ function ignoreSubtitled(showing) {
   return false;
 }
 
+function ignoreIMAX(showing) {
+  if (
+    !(
+      Object.prototype.hasOwnProperty.call(showing, 'properties')
+      && Object.prototype.hasOwnProperty.call(showing.properties, 'event.film.imax')
+    )
+  ) {
+    return true;
+  }
+  return false;
+}
+
+function ignorePremiumScreening(showing) {
+  if (
+    !(
+      Object.prototype.hasOwnProperty.call(showing, 'properties')
+      && Object.prototype.hasOwnProperty.call(showing.properties, 'event.film.premium-screening')
+    )
+  ) {
+    return true;
+  }
+  return false;
+}
+
 function displayRunTime(film) {
   if (
     film.properties
@@ -67,43 +91,49 @@ function getFilms(e) {
       results.innerHTML = '';
 
       data.forEach((film) => {
+        console.log(film);
+
         let prevDate;
         let dayRow;
         let timesCell = document.createElement('td');
         const showtimesTable = document.createElement('table');
         const showtimesData = film.schedules[0].performances;
 
-        showtimesData.filter(ignoreSubtitled).forEach((showing) => {
-          const timestamp = new Date(showing.ts);
-          const showingWeekday = days[timestamp.getDay()];
-          const showingDay = addZero(timestamp.getDate());
-          const showingMonth = months[timestamp.getMonth()];
-          const showingYear = timestamp.getFullYear();
-          const showingHour = addZero(timestamp.getHours());
-          const showingMinutes = addZero(timestamp.getMinutes());
-          const showingDate = showingDay + showingMonth + showingYear;
-          const dateCell = document.createElement('th');
-          const timeText = document.createElement('span');
+        showtimesData
+          .filter(ignoreSubtitled)
+          .filter(ignoreIMAX)
+          .filter(ignorePremiumScreening)
+          .forEach((showing) => {
+            const timestamp = new Date(showing.ts);
+            const showingWeekday = days[timestamp.getDay()];
+            const showingDay = addZero(timestamp.getDate());
+            const showingMonth = months[timestamp.getMonth()];
+            const showingYear = timestamp.getFullYear();
+            const showingHour = addZero(timestamp.getHours());
+            const showingMinutes = addZero(timestamp.getMinutes());
+            const showingDate = showingDay + showingMonth + showingYear;
+            const dateCell = document.createElement('th');
+            const timeText = document.createElement('span');
 
-          timeText.classList.add('film__time');
+            timeText.classList.add('film__time');
 
-          dateCell.innerHTML = `${showingWeekday}&nbsp;${showingDay}&nbsp;${showingMonth}`;
-          timeText.innerHTML = `${showingHour}:${showingMinutes}`;
+            dateCell.innerHTML = `${showingWeekday}&nbsp;${showingDay}&nbsp;${showingMonth}`;
+            timeText.innerHTML = `${showingHour}:${showingMinutes}`;
 
-          if (prevDate === showingDate) {
-            timesCell.appendChild(timeText);
-          } else {
-            dayRow = document.createElement('tr');
-            timesCell = document.createElement('td');
+            if (prevDate === showingDate) {
+              timesCell.appendChild(timeText);
+            } else {
+              dayRow = document.createElement('tr');
+              timesCell = document.createElement('td');
 
-            dayRow.appendChild(dateCell);
-            dayRow.appendChild(timesCell);
-            timesCell.appendChild(timeText);
-            showtimesTable.appendChild(dayRow);
-          }
+              dayRow.appendChild(dateCell);
+              dayRow.appendChild(timesCell);
+              timesCell.appendChild(timeText);
+              showtimesTable.appendChild(dayRow);
+            }
 
-          prevDate = showingDate;
-        });
+            prevDate = showingDate;
+          });
 
         const filmCard = /* html */ `
       <article data-id="${film.event_id}" class="film">
