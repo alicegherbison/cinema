@@ -1,6 +1,6 @@
 table {
   @include print {
-    font-size: 8pt;
+    font-size: 9pt;
     page-break-inside: avoid;
   }
 }

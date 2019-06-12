@@ -30,7 +30,7 @@ h1 {
 
 h2 {
   @include print {
-    font-size: 9pt;
+    font-size: 11pt;
     margin-bottom: $spacer-print * 2;
   }
 
@@ -54,6 +54,11 @@ h6 {
 }
 
 p {
+  @include print {
+    font-size: 10pt;
+    margin-bottom: 8pt;
+  }
+
   line-height: $paragraph-line-height;
   margin-bottom: $paragraph-margin-bottom;
   margin-top: 0;
