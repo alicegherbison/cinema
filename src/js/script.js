@@ -3,10 +3,7 @@ const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', '
 const submit = document.querySelector('#go');
 
 function addZero(x) {
-  if (x < 10) {
-    return `0${x}`;
-  }
-  return x;
+  return x < 10 ? `0${x}` : x;
 }
 
 function ignoreSubtitled(showing) {
@@ -103,8 +100,6 @@ function getFilms(e) {
       data
         .filter(ignoreEventCinema)
         .forEach((film) => {
-          console.log(film);
-
           let prevDate;
           let dayRow;
           let timesCell = document.createElement('td');
