@@ -1,52 +1,52 @@
 <!DOCTYPE html>
 <html lang="en-GB">
-  <head>
-    <!--[if lt IE 9]>
+
+<head>
+  <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script
     ><![endif]-->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      href="https://fonts.googleapis.com/css?family=Cutive+Mono"
-      rel="stylesheet"
-    />
-    <link href="css/build.min.css" rel="stylesheet" />
-    <title>Film finder</title>
-  </head>
-  <body>
-    <div class="wrapper">
-      <header class="site-header">
-        <h1>Film finder</h1>
-        <p>A small page for displaying upcoming films at Cineworld.</p>
-        <hr />
-        <form>
-          <div class="form-row">
-            <fieldset class="form-column">
-              <label for="cinema">Cinema</label>
-              <select id="cinema">
-                <option value="418fdadd-4f1e-b60e-03e0-bcc4000031d6" selected
-                  >Fountainpark</option
-                >
-                <option value="499fdadd-4f1e-b60e-33e0-bcc400003a86"
-                  >Renfrew Street</option
-                >
-                <option value="3a9fdadd-4f1e-b60e-33e0-bcc40000394c"
-                  >Falkirk</option
-                >
-              </select>
-            </fieldset>
-          </div>
-          <button type="submit" id="go">Get film times</button>
-        </form>
-      </header>
-      <section id="results" class="results"></section>
-      <footer class="site-footer">
-        built by <a href="https://www.alicegherbison.com">alice</a>. api from
-        <a href="https://api.list.co.uk/">the list</a>. source on
-        <a href="https://www.github.com/alicegherbison/cinema">github</a>.
-      </footer>
-    </div>
-    <script src="js/build.min.js"></script>
-  </body>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:creator" content="@alicegherbison" />
+  <meta property="og:url" content="https://cinema.netlify.com/" />
+  <meta property="og:title" content="Film finder" />
+  <meta property="og:description" content="A small page for displaying upcoming films at Cineworld." />
+  <meta property="og:image" content="http://i66.tinypic.com/oghqvo.png" />
+  <link href="https://fonts.googleapis.com/css?family=Cutive+Mono" rel="stylesheet" />
+  <link href="css/build.min.css" rel="stylesheet" />
+  <title>Film finder</title>
+</head>
+
+<body>
+  <div class="wrapper">
+    <header class="site-header">
+      <h1>Film finder</h1>
+      <p>A small page for displaying upcoming films at Cineworld.</p>
+      <hr />
+      <form>
+        <div class="form-row">
+          <fieldset class="form-column">
+            <label for="cinema">Cinema</label>
+            <select id="cinema">
+              <option value="418fdadd-4f1e-b60e-03e0-bcc4000031d6" selected>Fountainpark</option>
+              <option value="499fdadd-4f1e-b60e-33e0-bcc400003a86">Renfrew Street</option>
+              <option value="3a9fdadd-4f1e-b60e-33e0-bcc40000394c">Falkirk</option>
+            </select>
+          </fieldset>
+        </div>
+        <button type="submit" id="go">Get film times</button>
+      </form>
+    </header>
+    <section id="results" class="results"></section>
+    <footer class="site-footer">
+      built by <a href="https://www.alicegherbison.com">alice</a>. api from
+      <a href="https://api.list.co.uk/">the list</a>. source on
+      <a href="https://www.github.com/alicegherbison/cinema">github</a>.
+    </footer>
+  </div>
+  <script src="js/build.min.js"></script>
+</body>
+
 </html>

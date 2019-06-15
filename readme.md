@@ -12,6 +12,8 @@ This is used as a personal project to learn API calls, results display and how t
 
 API key is from [The List](https://api.thelist.co.uk) and returns all upcoming films at various [Cineworld](https://www.cineworld.co.uk/)s in Edinburgh and Glasgow.
 
+Colour scheme uses colours from the [Monokai Pro VSCode theme](https://www.monokai.pro/).
+
 Results **exclude**:
 - subtitled, IMAX, 4DX 3D and SUPERSCREEN showings
 - event cinema films such as live ballet or plays
