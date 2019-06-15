@@ -12,7 +12,9 @@ This is used as a personal project to learn API calls, results display and how t
 
 API key is from [The List](https://api.thelist.co.uk) and returns all upcoming films at various [Cineworld](https://www.cineworld.co.uk/)s in Edinburgh and Glasgow.
 
-Results **exclude** any subtitled films, but include 3D, 4D and Cinebabies.
+Results **exclude**:
+- subtitled, IMAX, 4DX 3D and SUPERSCREEN showings
+- event cinema films such as live ballet or plays
 
 ## Personal learnings
 
