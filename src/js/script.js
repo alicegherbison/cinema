@@ -45,6 +45,16 @@ function ignorePremiumScreening(showing) {
   return false;
 }
 
+function ignoreEventCinema(film) {
+  if (
+    film.tags
+    && film.tags.includes('event cinema')
+  ) {
+    return false;
+  }
+  return true;
+}
+
 function displayRunTime(film) {
   if (
     film.properties
@@ -90,52 +100,54 @@ function getFilms(e) {
     .then((data) => {
       results.innerHTML = '';
 
-      data.forEach((film) => {
-        console.log(film);
+      data
+        .filter(ignoreEventCinema)
+        .forEach((film) => {
+          console.log(film);
 
-        let prevDate;
-        let dayRow;
-        let timesCell = document.createElement('td');
-        const showtimesTable = document.createElement('table');
-        const showtimesData = film.schedules[0].performances;
+          let prevDate;
+          let dayRow;
+          let timesCell = document.createElement('td');
+          const showtimesTable = document.createElement('table');
+          const showtimesData = film.schedules[0].performances;
 
-        showtimesData
-          .filter(ignoreSubtitled)
-          .filter(ignoreIMAX)
-          .filter(ignorePremiumScreening)
-          .forEach((showing) => {
-            const timestamp = new Date(showing.ts);
-            const showingWeekday = days[timestamp.getDay()];
-            const showingDay = addZero(timestamp.getDate());
-            const showingMonth = months[timestamp.getMonth()];
-            const showingYear = timestamp.getFullYear();
-            const showingHour = addZero(timestamp.getHours());
-            const showingMinutes = addZero(timestamp.getMinutes());
-            const showingDate = showingDay + showingMonth + showingYear;
-            const dateCell = document.createElement('th');
-            const timeText = document.createElement('span');
+          showtimesData
+            .filter(ignoreSubtitled)
+            .filter(ignoreIMAX)
+            .filter(ignorePremiumScreening)
+            .forEach((showing) => {
+              const timestamp = new Date(showing.ts);
+              const showingWeekday = days[timestamp.getDay()];
+              const showingDay = addZero(timestamp.getDate());
+              const showingMonth = months[timestamp.getMonth()];
+              const showingYear = timestamp.getFullYear();
+              const showingHour = addZero(timestamp.getHours());
+              const showingMinutes = addZero(timestamp.getMinutes());
+              const showingDate = showingDay + showingMonth + showingYear;
+              const dateCell = document.createElement('th');
+              const timeText = document.createElement('span');
 
-            timeText.classList.add('film__time');
+              timeText.classList.add('film__time');
 
-            dateCell.innerHTML = `${showingWeekday}&nbsp;${showingDay}&nbsp;${showingMonth}`;
-            timeText.innerHTML = `${showingHour}:${showingMinutes}`;
+              dateCell.innerHTML = `${showingWeekday}&nbsp;${showingDay}&nbsp;${showingMonth}`;
+              timeText.innerHTML = `${showingHour}:${showingMinutes}`;
 
-            if (prevDate === showingDate) {
-              timesCell.appendChild(timeText);
-            } else {
-              dayRow = document.createElement('tr');
-              timesCell = document.createElement('td');
+              if (prevDate === showingDate) {
+                timesCell.appendChild(timeText);
+              } else {
+                dayRow = document.createElement('tr');
+                timesCell = document.createElement('td');
 
-              dayRow.appendChild(dateCell);
-              dayRow.appendChild(timesCell);
-              timesCell.appendChild(timeText);
-              showtimesTable.appendChild(dayRow);
-            }
+                dayRow.appendChild(dateCell);
+                dayRow.appendChild(timesCell);
+                timesCell.appendChild(timeText);
+                showtimesTable.appendChild(dayRow);
+              }
 
-            prevDate = showingDate;
-          });
+              prevDate = showingDate;
+            });
 
-        const filmCard = /* html */ `
+          const filmCard = /* html */ `
       <article data-id="${film.event_id}" class="film">
       <div class="film__body">
       <h2>${film.name}${displayCertificate(film)}</h2>
@@ -148,8 +160,8 @@ function getFilms(e) {
       </footer>
       </article>
       `;
-        results.innerHTML += filmCard;
-      });
+          results.innerHTML += filmCard;
+        });
       results.innerHTML += /* html */ `
     <div class="print"><a class="print__button" onClick="window.print()">print</a></div>
     `;
