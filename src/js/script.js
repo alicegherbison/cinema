@@ -98,7 +98,6 @@ function getFilms(e) {
       results.innerHTML = '';
 
       data.forEach((film) => {
-        console.log(film);
         let prevDate;
         let dayRow;
         let timesCell = document.createElement('td');
